@@ -173,6 +173,7 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px s
   .strategy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .finance-sketch { flex-basis: 190px; width: 190px; height: 180px; }
 }
+.affordability-state { margin-top: 1.5rem; padding: 2rem; border: 1px solid #9a6247; border-radius: 16px; background: linear-gradient(145deg, #3c2922, #1d2520); }.affordability-state h2 { max-width: 650px; margin: .7rem 0; color: #f0ddd0; }.affordability-state > p { color: #cbb6a8; }.affordability-metrics { display: flex; gap: 2rem; flex-wrap: wrap; margin: 2rem 0; }.affordability-metrics div { display: grid; gap: .4rem; }.affordability-metrics span, .affordability-state h3 { color: #d6a57d; font: .65rem 'DM Mono'; letter-spacing: .1em; text-transform: uppercase; }.affordability-metrics b { color: #f2e8dc; font-size: 1.2rem; }.affordability-state h3 { margin-top: 1.5rem; }.affordability-state li { margin: .5rem 0; color: #d6c7bb; }
 @media (max-width: 620px) {
   .topbar { height: 62px; padding: 0 18px; }
   .nav-status { display: none; }

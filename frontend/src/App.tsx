@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getScenarios, generateStrategies, runSimulation } from "./api/strategyApi";
+import { checkAffordability, getScenarios, generateStrategies, runSimulation } from "./api/strategyApi";
 import { makeDemoScenario, mockScenarios, mockStrategies } from "./api/mockStrategies";
 import { assetTypeForGoalCategory, toStrategyRequest } from "./api/requestBuilder";
 import { BrandHeader } from "./components/BrandHeader";
@@ -7,7 +7,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { PlanningPage } from "./pages/PlanningPage";
 import { StrategyResultsPage } from "./pages/StrategyResultsPage";
 import type { FinancialProfileForm, GoalForm } from "./types/financial";
-import type { RankedStrategy, RankingPreference, Scenario, SimulationRequest, SimulationResult, Strategy, StrategyRequest } from "./types/strategy";
+import type { AffordabilityResult, RankedStrategy, RankingPreference, Scenario, SimulationRequest, SimulationResult, Strategy, StrategyRequest } from "./types/strategy";
 
 type View = "planning" | "results" | "dashboard";
 
@@ -53,6 +53,7 @@ function App() {
   const [isDemo, setIsDemo] = useState(false);
   const [error, setError] = useState("");
   const [scenarioError, setScenarioError] = useState("");
+  const [affordability, setAffordability] = useState<AffordabilityResult | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -82,6 +83,13 @@ function App() {
     setPreference(nextPreference);
     setLastRequest(request);
     try {
+      const affordabilityResult = await checkAffordability(request);
+      setAffordability(affordabilityResult);
+      if (affordabilityResult.goal_status === "not_feasible") {
+        setStrategies([]);
+        setView("results");
+        return;
+      }
       const result = await generateStrategies(request);
       setStrategies(result);
       setIsDemo(false);
@@ -89,6 +97,7 @@ function App() {
       setModifiedStrategy(null);
       setSimulation(result[0]?.normal_simulation ?? null);
     } catch (cause) {
+      setAffordability(null);
       const reason = cause instanceof Error ? cause.message : "Unknown API error";
       setStrategies(mockStrategies);
       setIsDemo(true);
@@ -150,7 +159,7 @@ function App() {
     <div className="app-shell">
       <BrandHeader />
       {view === "planning" && <main className="content"><PlanningPage profile={profile} goal={goal} loading={loading} onProfileChange={updateProfile} onGoalChange={updateGoal} onGenerate={() => generate()} /></main>}
-      {view === "results" && <StrategyResultsPage strategies={strategies} goalName={goal.name} preference={preference} selectedId={selectedId} comparedIds={comparedIds} loading={loading} isDemo={isDemo} error={error} onSelect={item => setSelectedId(item.strategy.id)} onOpen={openDashboard} onCompare={toggleCompared} onPreferenceChange={next => { void generate(next); }} onRetry={() => { void generate(); }} onEdit={() => setView("planning")} />}
+      {view === "results" && <StrategyResultsPage strategies={strategies} goalName={goal.name} preference={preference} selectedId={selectedId} comparedIds={comparedIds} loading={loading} isDemo={isDemo} error={error} affordability={affordability} onSelect={item => setSelectedId(item.strategy.id)} onOpen={openDashboard} onCompare={toggleCompared} onPreferenceChange={next => { void generate(next); }} onRetry={() => { void generate(); }} onEdit={() => setView("planning")} />}
       {view === "dashboard" && selected && <DashboardPage item={selected} strategy={modifiedStrategy ?? selected.strategy} isModified={modifiedStrategy !== null} targetAmount={lastRequest?.goal.target_amount ?? Number(goal.amount)} scenarios={scenarios} scenarioId={activeScenarioId} simulation={simulation} loading={scenarioLoading} error={scenarioError || (scenarioCatalogDemo ? "Using sample scenario definitions." : "")} isDemo={isDemo} profile={lastRequest?.profile ?? toStrategyRequest(profile, goal, preference).profile} onApplyAdjustment={strategy => { setModifiedStrategy(strategy); void runScenario(activeScenarioId, strategy); }} onScenarioChange={id => { void runScenario(id); }} onBack={() => setView("results")} onRetry={() => { void runScenario(); }} />}
     </div>
   );

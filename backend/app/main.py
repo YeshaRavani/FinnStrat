@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes.simulations import router as simulations_router
 from app.api.routes.scenarios import router as scenarios_router
 from app.api.routes.strategies import router as strategies_router
+from app.api.routes.affordability import router as affordability_router
 
 app = FastAPI(
     title="FinnStrat API",
@@ -22,6 +23,7 @@ app.add_middleware(
 app.include_router(simulations_router)
 app.include_router(scenarios_router)
 app.include_router(strategies_router)
+app.include_router(affordability_router)
 
 
 @app.get("/api/v1/health")

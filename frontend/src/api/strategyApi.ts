@@ -1,8 +1,12 @@
-import type { RankedStrategy, Scenario, SimulationRequest, SimulationResult, StrategyRequest } from "../types/strategy";
+import type { AffordabilityResult, RankedStrategy, Scenario, SimulationRequest, SimulationResult, StrategyRequest } from "../types/strategy";
 import { getJson, postJson } from "./client";
 
 export function generateStrategies(request: StrategyRequest) {
   return postJson<RankedStrategy[]>("/strategies/generate", request);
+}
+
+export function checkAffordability(request: StrategyRequest) {
+  return postJson<AffordabilityResult>("/affordability/check", request);
 }
 
 export function getScenarios() {

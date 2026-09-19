@@ -129,6 +129,18 @@ class StrategyGenerationRequest(BaseModel):
     ranking_preference: RankingPreference = "balanced"
 
 
+class AffordabilityResult(BaseModel):
+    goal_status: Literal["affordable_now", "affordable_later", "affordable_with_changes", "not_feasible"]
+    affordability_reason: str
+    available_monthly_surplus: float
+    required_monthly_contribution: float
+    required_emi_ratio: float
+    maximum_allowed_emi_ratio: float
+    estimated_maturity_month: Optional[int] = None
+    shortfall: float = 0
+    recovery_options: list[str] = Field(default_factory=list)
+
+
 class RankedStrategy(BaseModel):
     strategy: Strategy
     maturity_month: Optional[int]

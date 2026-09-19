@@ -112,3 +112,15 @@ export type SimulationRequest = {
   scenario: Scenario;
   max_months: number;
 };
+
+export type AffordabilityResult = {
+  goal_status: "affordable_now" | "affordable_later" | "affordable_with_changes" | "not_feasible";
+  affordability_reason: string;
+  available_monthly_surplus: number;
+  required_monthly_contribution: number;
+  required_emi_ratio: number;
+  maximum_allowed_emi_ratio: number;
+  estimated_maturity_month: number | null;
+  shortfall: number;
+  recovery_options: string[];
+};

@@ -1,4 +1,4 @@
-import type { RankedStrategy, RankingPreference } from "../types/strategy";
+import type { AffordabilityResult, RankedStrategy, RankingPreference } from "../types/strategy";
 import { PreferenceSelector } from "../components/PreferenceSelector";
 import { StrategyCard } from "../components/StrategyCard";
 import { StrategyComparison } from "../components/StrategyComparison";
@@ -18,9 +18,10 @@ type Props = {
   onPreferenceChange: (preference: RankingPreference) => void;
   onRetry: () => void;
   onEdit: () => void;
+  affordability: AffordabilityResult | null;
 };
 
-export function StrategyResultsPage({ strategies, goalName, preference, selectedId, comparedIds, loading, isDemo, error, onSelect, onOpen, onCompare, onPreferenceChange, onRetry, onEdit }: Props) {
+export function StrategyResultsPage({ strategies, goalName, preference, selectedId, comparedIds, loading, isDemo, error, affordability, onSelect, onOpen, onCompare, onPreferenceChange, onRetry, onEdit }: Props) {
   const selected = strategies.find(item => item.strategy.id === selectedId) ?? null;
   const compared = strategies.filter(item => comparedIds.includes(item.strategy.id));
   const bestNormal = [...strategies].sort((a, b) => (b.normal_simulation.resilience_score ?? 0) - (a.normal_simulation.resilience_score ?? 0))[0];
@@ -34,7 +35,7 @@ export function StrategyResultsPage({ strategies, goalName, preference, selected
       <div className="results-toolbar"><PreferenceSelector value={preference} onChange={onPreferenceChange} /><span className={isDemo ? "data-badge demo" : "data-badge live"}><i />{isDemo ? "Demo data" : "Live API results"}</span></div>
       {error && <div className="notice" role="alert"><span>{error}</span><button type="button" className="text-action" onClick={onRetry}>Retry</button></div>}
       {loading ? <div className="strategy-grid" aria-label="Generating strategies">{[1, 2, 3].map(number => <div className="strategy-skeleton" key={number} />)}</div> : strategies.length === 0 ? (
-        <div className="empty-state"><h2>No feasible strategies found</h2><p>Adjust the goal amount, timeline, or monthly finances and try again.</p><button type="button" className="primary compact" onClick={onEdit}>Review inputs</button></div>
+        <AffordabilityNotice result={affordability} onEdit={onEdit} />
       ) : <>
         <div className="insight-strip" aria-label="Strategy highlights">
           <div><span>TOP RECOMMENDATION</span><b>{strategies[0]?.strategy.name ?? "—"}</b></div>
@@ -49,4 +50,8 @@ export function StrategyResultsPage({ strategies, goalName, preference, selected
       </>}
     </main>
   );
+}
+
+function AffordabilityNotice({ result, onEdit }: { result: AffordabilityResult | null; onEdit: () => void }) {
+  return <div className="affordability-state"><span className="section-label">AFFORDABILITY CHECK</span><h2>This goal is not feasible under the current plan.</h2><p>{result?.affordability_reason.replaceAll("_", " ") ?? "No feasible strategy was found."}</p>{result && <div className="affordability-metrics"><div><span>AVAILABLE SURPLUS</span><b>₹{Math.round(result.available_monthly_surplus).toLocaleString("en-IN")}</b></div><div><span>REQUIRED MONTHLY CONTRIBUTION</span><b>₹{Math.round(result.required_monthly_contribution).toLocaleString("en-IN")}</b></div><div><span>SHORTFALL</span><b>₹{Math.round(result.shortfall).toLocaleString("en-IN")}</b></div></div>}<h3>Ways to make it feasible</h3><ul>{(result?.recovery_options ?? ["Reduce the target amount", "Increase the timeline", "Increase monthly savings"]).map(option => <li key={option}>{option}</li>)}</ul><button type="button" className="primary compact" onClick={onEdit}>Adjust my plan</button></div>;
 }
