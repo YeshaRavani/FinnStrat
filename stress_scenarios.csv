@@ -1,0 +1,7 @@
+scenario_id,scenario_name,income_loss_start_month,income_loss_duration_months,income_loss_percent,market_drop_month,market_drop_percent,unexpected_expense_month,unexpected_expense_amount,rate_hike_start_month,rate_hike_percent_points
+baseline,Baseline,,0,0,,0,,0,,0
+job_loss_6m,Six Month Income Shock,13,6,0.75,,0,,0,,0
+market_crash,Investment Market Crash,,0,0,10,0.3,,0,,0
+medical_emergency,Large Emergency Expense,,0,0,,0,18,850000,,0
+rate_hike,Floating Rate Increase,,0,0,,0,,0,15,0.02
+compound_shock,Job Loss Plus Crash Plus Emergency,13,8,0.7,10,0.35,16,650000,15,0.015

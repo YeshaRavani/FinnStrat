@@ -1,0 +1,481 @@
+strategy_id,profile_id,strategy_code,strategy_name,purchase_month,home_price,down_payment,loan_amount,loan_tenure_years,loan_interest_rate_annual,estimated_monthly_emi
+P001_full_cash,P001,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P001_high_down_payment,P001,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P001_balanced_hybrid,P001,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P001_delay_build,P001,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P002_full_cash,P002,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P002_high_down_payment,P002,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P002_balanced_hybrid,P002,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P002_delay_build,P002,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P003_full_cash,P003,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P003_high_down_payment,P003,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P003_balanced_hybrid,P003,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P003_delay_build,P003,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P004_full_cash,P004,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P004_high_down_payment,P004,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P004_balanced_hybrid,P004,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P004_delay_build,P004,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P005_full_cash,P005,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P005_high_down_payment,P005,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P005_balanced_hybrid,P005,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P005_delay_build,P005,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P006_full_cash,P006,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P006_high_down_payment,P006,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P006_balanced_hybrid,P006,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P006_delay_build,P006,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P007_full_cash,P007,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P007_high_down_payment,P007,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P007_balanced_hybrid,P007,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P007_delay_build,P007,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P008_full_cash,P008,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P008_high_down_payment,P008,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P008_balanced_hybrid,P008,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P008_delay_build,P008,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P009_full_cash,P009,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P009_high_down_payment,P009,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P009_balanced_hybrid,P009,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P009_delay_build,P009,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P010_full_cash,P010,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P010_high_down_payment,P010,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P010_balanced_hybrid,P010,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P010_delay_build,P010,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P011_full_cash,P011,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P011_high_down_payment,P011,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P011_balanced_hybrid,P011,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P011_delay_build,P011,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P012_full_cash,P012,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P012_high_down_payment,P012,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P012_balanced_hybrid,P012,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P012_delay_build,P012,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P013_full_cash,P013,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P013_high_down_payment,P013,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P013_balanced_hybrid,P013,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P013_delay_build,P013,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P014_full_cash,P014,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P014_high_down_payment,P014,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P014_balanced_hybrid,P014,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P014_delay_build,P014,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P015_full_cash,P015,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P015_high_down_payment,P015,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P015_balanced_hybrid,P015,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P015_delay_build,P015,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P016_full_cash,P016,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P016_high_down_payment,P016,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P016_balanced_hybrid,P016,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P016_delay_build,P016,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P017_full_cash,P017,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P017_high_down_payment,P017,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P017_balanced_hybrid,P017,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P017_delay_build,P017,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P018_full_cash,P018,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P018_high_down_payment,P018,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P018_balanced_hybrid,P018,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P018_delay_build,P018,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P019_full_cash,P019,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P019_high_down_payment,P019,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P019_balanced_hybrid,P019,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P019_delay_build,P019,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P020_full_cash,P020,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P020_high_down_payment,P020,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P020_balanced_hybrid,P020,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P020_delay_build,P020,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P021_full_cash,P021,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P021_high_down_payment,P021,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P021_balanced_hybrid,P021,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P021_delay_build,P021,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P022_full_cash,P022,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P022_high_down_payment,P022,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P022_balanced_hybrid,P022,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P022_delay_build,P022,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P023_full_cash,P023,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P023_high_down_payment,P023,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P023_balanced_hybrid,P023,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P023_delay_build,P023,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P024_full_cash,P024,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P024_high_down_payment,P024,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P024_balanced_hybrid,P024,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P024_delay_build,P024,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P025_full_cash,P025,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P025_high_down_payment,P025,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P025_balanced_hybrid,P025,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P025_delay_build,P025,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P026_full_cash,P026,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P026_high_down_payment,P026,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P026_balanced_hybrid,P026,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P026_delay_build,P026,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P027_full_cash,P027,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P027_high_down_payment,P027,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P027_balanced_hybrid,P027,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P027_delay_build,P027,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P028_full_cash,P028,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P028_high_down_payment,P028,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P028_balanced_hybrid,P028,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P028_delay_build,P028,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P029_full_cash,P029,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P029_high_down_payment,P029,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P029_balanced_hybrid,P029,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P029_delay_build,P029,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P030_full_cash,P030,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P030_high_down_payment,P030,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P030_balanced_hybrid,P030,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P030_delay_build,P030,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P031_full_cash,P031,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P031_high_down_payment,P031,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P031_balanced_hybrid,P031,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P031_delay_build,P031,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P032_full_cash,P032,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P032_high_down_payment,P032,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P032_balanced_hybrid,P032,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P032_delay_build,P032,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P033_full_cash,P033,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P033_high_down_payment,P033,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P033_balanced_hybrid,P033,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P033_delay_build,P033,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P034_full_cash,P034,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P034_high_down_payment,P034,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P034_balanced_hybrid,P034,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P034_delay_build,P034,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P035_full_cash,P035,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P035_high_down_payment,P035,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P035_balanced_hybrid,P035,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P035_delay_build,P035,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P036_full_cash,P036,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P036_high_down_payment,P036,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P036_balanced_hybrid,P036,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P036_delay_build,P036,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P037_full_cash,P037,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P037_high_down_payment,P037,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P037_balanced_hybrid,P037,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P037_delay_build,P037,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P038_full_cash,P038,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P038_high_down_payment,P038,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P038_balanced_hybrid,P038,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P038_delay_build,P038,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P039_full_cash,P039,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P039_high_down_payment,P039,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P039_balanced_hybrid,P039,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P039_delay_build,P039,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P040_full_cash,P040,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P040_high_down_payment,P040,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P040_balanced_hybrid,P040,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P040_delay_build,P040,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P041_full_cash,P041,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P041_high_down_payment,P041,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P041_balanced_hybrid,P041,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P041_delay_build,P041,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P042_full_cash,P042,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P042_high_down_payment,P042,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P042_balanced_hybrid,P042,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P042_delay_build,P042,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P043_full_cash,P043,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P043_high_down_payment,P043,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P043_balanced_hybrid,P043,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P043_delay_build,P043,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P044_full_cash,P044,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P044_high_down_payment,P044,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P044_balanced_hybrid,P044,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P044_delay_build,P044,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P045_full_cash,P045,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P045_high_down_payment,P045,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P045_balanced_hybrid,P045,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P045_delay_build,P045,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P046_full_cash,P046,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P046_high_down_payment,P046,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P046_balanced_hybrid,P046,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P046_delay_build,P046,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P047_full_cash,P047,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P047_high_down_payment,P047,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P047_balanced_hybrid,P047,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P047_delay_build,P047,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P048_full_cash,P048,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P048_high_down_payment,P048,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P048_balanced_hybrid,P048,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P048_delay_build,P048,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P049_full_cash,P049,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P049_high_down_payment,P049,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P049_balanced_hybrid,P049,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P049_delay_build,P049,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P050_full_cash,P050,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P050_high_down_payment,P050,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P050_balanced_hybrid,P050,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P050_delay_build,P050,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P051_full_cash,P051,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P051_high_down_payment,P051,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P051_balanced_hybrid,P051,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P051_delay_build,P051,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P052_full_cash,P052,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P052_high_down_payment,P052,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P052_balanced_hybrid,P052,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P052_delay_build,P052,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P053_full_cash,P053,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P053_high_down_payment,P053,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P053_balanced_hybrid,P053,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P053_delay_build,P053,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P054_full_cash,P054,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P054_high_down_payment,P054,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P054_balanced_hybrid,P054,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P054_delay_build,P054,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P055_full_cash,P055,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P055_high_down_payment,P055,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P055_balanced_hybrid,P055,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P055_delay_build,P055,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P056_full_cash,P056,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P056_high_down_payment,P056,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P056_balanced_hybrid,P056,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P056_delay_build,P056,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P057_full_cash,P057,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P057_high_down_payment,P057,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P057_balanced_hybrid,P057,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P057_delay_build,P057,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P058_full_cash,P058,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P058_high_down_payment,P058,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P058_balanced_hybrid,P058,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P058_delay_build,P058,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P059_full_cash,P059,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P059_high_down_payment,P059,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P059_balanced_hybrid,P059,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P059_delay_build,P059,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P060_full_cash,P060,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P060_high_down_payment,P060,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P060_balanced_hybrid,P060,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P060_delay_build,P060,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P061_full_cash,P061,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P061_high_down_payment,P061,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P061_balanced_hybrid,P061,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P061_delay_build,P061,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P062_full_cash,P062,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P062_high_down_payment,P062,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P062_balanced_hybrid,P062,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P062_delay_build,P062,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P063_full_cash,P063,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P063_high_down_payment,P063,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P063_balanced_hybrid,P063,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P063_delay_build,P063,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P064_full_cash,P064,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P064_high_down_payment,P064,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P064_balanced_hybrid,P064,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P064_delay_build,P064,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P065_full_cash,P065,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P065_high_down_payment,P065,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P065_balanced_hybrid,P065,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P065_delay_build,P065,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P066_full_cash,P066,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P066_high_down_payment,P066,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P066_balanced_hybrid,P066,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P066_delay_build,P066,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P067_full_cash,P067,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P067_high_down_payment,P067,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P067_balanced_hybrid,P067,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P067_delay_build,P067,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P068_full_cash,P068,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P068_high_down_payment,P068,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P068_balanced_hybrid,P068,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P068_delay_build,P068,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P069_full_cash,P069,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P069_high_down_payment,P069,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P069_balanced_hybrid,P069,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P069_delay_build,P069,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P070_full_cash,P070,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P070_high_down_payment,P070,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P070_balanced_hybrid,P070,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P070_delay_build,P070,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P071_full_cash,P071,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P071_high_down_payment,P071,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P071_balanced_hybrid,P071,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P071_delay_build,P071,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P072_full_cash,P072,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P072_high_down_payment,P072,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P072_balanced_hybrid,P072,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P072_delay_build,P072,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P073_full_cash,P073,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P073_high_down_payment,P073,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P073_balanced_hybrid,P073,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P073_delay_build,P073,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P074_full_cash,P074,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P074_high_down_payment,P074,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P074_balanced_hybrid,P074,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P074_delay_build,P074,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P075_full_cash,P075,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P075_high_down_payment,P075,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P075_balanced_hybrid,P075,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P075_delay_build,P075,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P076_full_cash,P076,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P076_high_down_payment,P076,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P076_balanced_hybrid,P076,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P076_delay_build,P076,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P077_full_cash,P077,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P077_high_down_payment,P077,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P077_balanced_hybrid,P077,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P077_delay_build,P077,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P078_full_cash,P078,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P078_high_down_payment,P078,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P078_balanced_hybrid,P078,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P078_delay_build,P078,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P079_full_cash,P079,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P079_high_down_payment,P079,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P079_balanced_hybrid,P079,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P079_delay_build,P079,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P080_full_cash,P080,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P080_high_down_payment,P080,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P080_balanced_hybrid,P080,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P080_delay_build,P080,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P081_full_cash,P081,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P081_high_down_payment,P081,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P081_balanced_hybrid,P081,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P081_delay_build,P081,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P082_full_cash,P082,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P082_high_down_payment,P082,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P082_balanced_hybrid,P082,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P082_delay_build,P082,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P083_full_cash,P083,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P083_high_down_payment,P083,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P083_balanced_hybrid,P083,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P083_delay_build,P083,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P084_full_cash,P084,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P084_high_down_payment,P084,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P084_balanced_hybrid,P084,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P084_delay_build,P084,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P085_full_cash,P085,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P085_high_down_payment,P085,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P085_balanced_hybrid,P085,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P085_delay_build,P085,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P086_full_cash,P086,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P086_high_down_payment,P086,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P086_balanced_hybrid,P086,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P086_delay_build,P086,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P087_full_cash,P087,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P087_high_down_payment,P087,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P087_balanced_hybrid,P087,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P087_delay_build,P087,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P088_full_cash,P088,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P088_high_down_payment,P088,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P088_balanced_hybrid,P088,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P088_delay_build,P088,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P089_full_cash,P089,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P089_high_down_payment,P089,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P089_balanced_hybrid,P089,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P089_delay_build,P089,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P090_full_cash,P090,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P090_high_down_payment,P090,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P090_balanced_hybrid,P090,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P090_delay_build,P090,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P091_full_cash,P091,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P091_high_down_payment,P091,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P091_balanced_hybrid,P091,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P091_delay_build,P091,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P092_full_cash,P092,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P092_high_down_payment,P092,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P092_balanced_hybrid,P092,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P092_delay_build,P092,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P093_full_cash,P093,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P093_high_down_payment,P093,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P093_balanced_hybrid,P093,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P093_delay_build,P093,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P094_full_cash,P094,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P094_high_down_payment,P094,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P094_balanced_hybrid,P094,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P094_delay_build,P094,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P095_full_cash,P095,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P095_high_down_payment,P095,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P095_balanced_hybrid,P095,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P095_delay_build,P095,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P096_full_cash,P096,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P096_high_down_payment,P096,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P096_balanced_hybrid,P096,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P096_delay_build,P096,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P097_full_cash,P097,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P097_high_down_payment,P097,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P097_balanced_hybrid,P097,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P097_delay_build,P097,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P098_full_cash,P098,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P098_high_down_payment,P098,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P098_balanced_hybrid,P098,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P098_delay_build,P098,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P099_full_cash,P099,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P099_high_down_payment,P099,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P099_balanced_hybrid,P099,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P099_delay_build,P099,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P100_full_cash,P100,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P100_high_down_payment,P100,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P100_balanced_hybrid,P100,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P100_delay_build,P100,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P101_full_cash,P101,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P101_high_down_payment,P101,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P101_balanced_hybrid,P101,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P101_delay_build,P101,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P102_full_cash,P102,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P102_high_down_payment,P102,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P102_balanced_hybrid,P102,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P102_delay_build,P102,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P103_full_cash,P103,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P103_high_down_payment,P103,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P103_balanced_hybrid,P103,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P103_delay_build,P103,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P104_full_cash,P104,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P104_high_down_payment,P104,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P104_balanced_hybrid,P104,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P104_delay_build,P104,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P105_full_cash,P105,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P105_high_down_payment,P105,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P105_balanced_hybrid,P105,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P105_delay_build,P105,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P106_full_cash,P106,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P106_high_down_payment,P106,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P106_balanced_hybrid,P106,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P106_delay_build,P106,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P107_full_cash,P107,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P107_high_down_payment,P107,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P107_balanced_hybrid,P107,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P107_delay_build,P107,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P108_full_cash,P108,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P108_high_down_payment,P108,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P108_balanced_hybrid,P108,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P108_delay_build,P108,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P109_full_cash,P109,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P109_high_down_payment,P109,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P109_balanced_hybrid,P109,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P109_delay_build,P109,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P110_full_cash,P110,full_cash,Full Cash Purchase,0,10000000,10000000,0,0,0,0
+P110_high_down_payment,P110,high_down_payment,High Down Payment,0,10000000,5000000,5000000,20,0.0875,44186
+P110_balanced_hybrid,P110,balanced_hybrid,Balanced Hybrid,0,10000000,2500000,7500000,25,0.091,63454
+P110_delay_build,P110,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P111_full_cash,P111,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P111_high_down_payment,P111,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P111_balanced_hybrid,P111,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P111_delay_build,P111,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P112_full_cash,P112,full_cash,Full Cash Purchase,12,10000000,10000000,0,0,0,0
+P112_high_down_payment,P112,high_down_payment,High Down Payment,12,10000000,5000000,5000000,20,0.0875,44186
+P112_balanced_hybrid,P112,balanced_hybrid,Balanced Hybrid,12,10000000,2500000,7500000,25,0.091,63454
+P112_delay_build,P112,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P113_full_cash,P113,full_cash,Full Cash Purchase,18,10000000,10000000,0,0,0,0
+P113_high_down_payment,P113,high_down_payment,High Down Payment,18,10000000,5000000,5000000,20,0.0875,44186
+P113_balanced_hybrid,P113,balanced_hybrid,Balanced Hybrid,18,10000000,2500000,7500000,25,0.091,63454
+P113_delay_build,P113,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P114_full_cash,P114,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P114_high_down_payment,P114,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P114_balanced_hybrid,P114,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P114_delay_build,P114,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P115_full_cash,P115,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P115_high_down_payment,P115,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P115_balanced_hybrid,P115,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P115_delay_build,P115,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P116_full_cash,P116,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P116_high_down_payment,P116,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P116_balanced_hybrid,P116,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P116_delay_build,P116,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P117_full_cash,P117,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P117_high_down_payment,P117,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P117_balanced_hybrid,P117,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P117_delay_build,P117,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P118_full_cash,P118,full_cash,Full Cash Purchase,6,10000000,10000000,0,0,0,0
+P118_high_down_payment,P118,high_down_payment,High Down Payment,6,10000000,5000000,5000000,20,0.0875,44186
+P118_balanced_hybrid,P118,balanced_hybrid,Balanced Hybrid,6,10000000,2500000,7500000,25,0.091,63454
+P118_delay_build,P118,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P119_full_cash,P119,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P119_high_down_payment,P119,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P119_balanced_hybrid,P119,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P119_delay_build,P119,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
+P120_full_cash,P120,full_cash,Full Cash Purchase,24,10000000,10000000,0,0,0,0
+P120_high_down_payment,P120,high_down_payment,High Down Payment,24,10000000,5000000,5000000,20,0.0875,44186
+P120_balanced_hybrid,P120,balanced_hybrid,Balanced Hybrid,24,10000000,2500000,7500000,25,0.091,63454
+P120_delay_build,P120,delay_build,Delay and Build,24,10000000,3500000,6500000,20,0.0875,57441
