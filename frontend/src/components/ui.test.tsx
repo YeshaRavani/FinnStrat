@@ -22,8 +22,16 @@ describe("strategy UI", () => {
 
     expect(screen.getByText("Hybrid reserve-first plan")).toBeTruthy();
     expect(screen.getByText("84")).toBeTruthy();
+    expect(screen.getByText("PLAN FIT")).toBeTruthy();
+    expect(screen.getByText("STRESS TEST")).toBeTruthy();
     expect(screen.getByText("DOWN PAYMENT")).toBeTruthy();
     expect(screen.getByText("LOAN TERMS")).toBeTruthy();
+    expect(screen.getByText("EST. EMI")).toBeTruthy();
+    expect(screen.getByText("EST. INTEREST")).toBeTruthy();
+    expect(screen.getByText("EXPECTED PAYOFF")).toBeTruthy();
+    expect(screen.getByText("CASH AT HORIZON")).toBeTruthy();
+    expect(screen.getByText("INVESTMENTS AT HORIZON")).toBeTruthy();
+    expect(screen.getByText("NET WORTH AT HORIZON")).toBeTruthy();
     expect(screen.getByText("INVESTED SHARE")).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Open analysis" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "Compare" }));

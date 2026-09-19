@@ -2,6 +2,7 @@ import type { AffordabilityResult, RankedStrategy, RankingPreference } from "../
 import { PreferenceSelector } from "../components/PreferenceSelector";
 import { StrategyCard } from "../components/StrategyCard";
 import { StrategyComparison } from "../components/StrategyComparison";
+import { finalNormalNetWorth } from "../utils/loanMath";
 
 type Props = {
   strategies: RankedStrategy[];
@@ -24,7 +25,7 @@ type Props = {
 export function StrategyResultsPage({ strategies, goalName, preference, selectedId, comparedIds, loading, isDemo, error, affordability, onSelect, onOpen, onCompare, onPreferenceChange, onRetry, onEdit }: Props) {
   const selected = strategies.find(item => item.strategy.id === selectedId) ?? null;
   const compared = strategies.filter(item => comparedIds.includes(item.strategy.id));
-  const bestNormal = [...strategies].sort((a, b) => (b.normal_simulation.resilience_score ?? 0) - (a.normal_simulation.resilience_score ?? 0))[0];
+  const bestNormal = [...strategies].sort((a, b) => finalNormalNetWorth(b) - finalNormalNetWorth(a))[0];
   const bestResilience = [...strategies].sort((a, b) => b.resilience_score - a.resilience_score)[0];
   const fastest = [...strategies].sort((a, b) => (a.maturity_month ?? Infinity) - (b.maturity_month ?? Infinity))[0];
   const lowestDebt = [...strategies].sort((a, b) => b.debt_score - a.debt_score)[0];

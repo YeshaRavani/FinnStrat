@@ -101,13 +101,21 @@ button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px s
 .strategy-type { margin: 0; color: #91a79c; font-size: .8rem; text-transform: capitalize; }
 .score-row { display: flex; align-items: center; justify-content: space-between; margin: 18px 0; }
 .score-row span { display: block; }
-.score-row strong { color: #f1eee4; font-size: 2rem; }
+.score-row strong { display: block; color: #f1eee4; font-size: 2rem; line-height: 1; }
 .score-row small, .card-stats small { color: #78958a; font-size: .7rem; }
-.score-ring { display: grid; place-items: center; width: 54px; aspect-ratio: 1; border: 3px solid #d9ae64; border-radius: 50%; }
-.score-ring b { color: #f0e8d8; font: .78rem 'DM Mono', monospace; }
+.overall-score em { display: block; margin-top: 6px; color: #d9ae64; font-size: .72rem; font-style: normal; font-weight: 600; }
+.stress-ring { display: grid; place-items: center; width: 92px; min-height: 68px; padding: 8px; border: 1px solid #806c42; border-radius: 8px; text-align: center; }
+.stress-ring span { display: block; color: #89a299; font: .53rem 'DM Mono', monospace; letter-spacing: .06em; }
+.stress-ring b { display: block; margin-top: 6px; color: #e5c786; font: .65rem 'DM Mono', monospace; line-height: 1.25; }
+.stress-ring.no-breach { border-color: #64a87d; }
+.stress-ring.no-breach b { color: #8fe0aa; }
 .card-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding-top: 12px; border-top: 1px solid #345247; }
 .card-stats span { display: block; margin-bottom: 4px; }
 .card-stats strong { color: #c6d5cb; font-size: .83rem; overflow-wrap: anywhere; }
+.card-stats > div:nth-last-child(-n+3) { padding-top: 10px; border-top: 1px solid #2b493e; }
+.normal-outcome { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 14px; padding: 12px 0 0; border-top: 1px solid #345247; }
+.normal-outcome span { display: block; margin-bottom: 4px; color: #89a299; font: .6rem 'DM Mono', monospace; letter-spacing: .06em; }
+.normal-outcome strong { display: block; color: #d9ae64; font-size: .73rem; overflow-wrap: anywhere; }
 .tradeoff { min-height: 52px; margin: 14px 0 0; color: #9eb1a9; font-size: .8rem; line-height: 1.5; }
 .card-actions { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid #345247; }
 .compare-check { display: flex; align-items: center; gap: 6px; color: #9eb1a9; font-size: .74rem; white-space: nowrap; }
