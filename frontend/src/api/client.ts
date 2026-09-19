@@ -6,6 +6,17 @@ export async function postJson<T>(path: string, body: unknown): Promise<T> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
-  if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
+  if (!response.ok) {
+    const responseBody = await response.text();
+    let detail = responseBody;
+    try {
+      const parsed = JSON.parse(responseBody) as { detail?: unknown };
+      if (typeof parsed.detail === "string") detail = parsed.detail;
+      else if (parsed.detail !== undefined) detail = JSON.stringify(parsed.detail);
+    } catch {
+      // Keep the response text when the server did not return JSON.
+    }
+    throw new Error(detail ? `API request failed (${response.status}): ${detail}` : `API request failed with status ${response.status}`);
+  }
   return response.json() as Promise<T>;
 }
