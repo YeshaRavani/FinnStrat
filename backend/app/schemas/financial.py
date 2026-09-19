@@ -88,3 +88,22 @@ class SimulationResult(BaseModel):
     resilience_score: float | None = None
     monthly_results: list[MonthlyResult] = []
     status: Literal["pending", "completed"] = "pending"
+
+
+class StrategyGenerationRequest(BaseModel):
+    profile: FinancialProfile
+    goal: FinancialGoal
+    max_months: int = Field(default=120, ge=1, le=600)
+    ranking_preference: Literal["balanced", "resilience", "speed", "wealth", "liquidity"] = "balanced"
+
+
+class RankedStrategy(BaseModel):
+    strategy: Strategy
+    maturity_month: int | None
+    resilience_score: float
+    goal_success_score: float
+    liquidity_score: float
+    speed_score: float
+    overall_score: float
+    normal_simulation: SimulationResult
+    stress_simulation: SimulationResult

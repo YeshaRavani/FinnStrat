@@ -1,19 +1,34 @@
-function App() {
-  return (
-    <main className="shell">
-      <div className="eyebrow">FINNSTRAT / FINANCIAL RESILIENCE ENGINE</div>
-      <h1>Plan for the best.<br />Prepare for the worst.</h1>
-      <p className="intro">
-        Compare the strongest strategies for any major purchase and discover
-        where each one could break under uncertainty.
-      </p>
-      <button>Build my financial plan</button>
-      <div className="status-card">
-        <span className="status-dot" />
-        Simulation workspace ready
-      </div>
-    </main>
-  );
-}
+import { useState } from "react";
 
+type Strategy = { strategy: { id: string; name: string; type: string; monthly_contribution: number; loan_amount: number }; maturity_month: number | null; resilience_score: number; liquidity_score: number; speed_score: number; overall_score: number };
+const demoStrategies: Strategy[] = [
+  { strategy: { id: "hybrid", name: "Hybrid reserve-first plan", type: "hybrid", monthly_contribution: 37500, loan_amount: 900000 }, maturity_month: 11, resilience_score: 86, liquidity_score: 91, speed_score: 70, overall_score: 84.4 },
+  { strategy: { id: "save_then_buy", name: "Save and buy later", type: "save_then_buy", monthly_contribution: 90000, loan_amount: 0 }, maturity_month: 17, resilience_score: 93, liquidity_score: 95, speed_score: 57, overall_score: 82.8 },
+  { strategy: { id: "invest_then_buy", name: "Invest while saving", type: "invest_then_buy", monthly_contribution: 75000, loan_amount: 0 }, maturity_month: 14, resilience_score: 74, liquidity_score: 68, speed_score: 63, overall_score: 76.1 },
+];
+
+function App() {
+  const [profile, setProfile] = useState({ income: "250000", expenses: "100000", savings: "3000000", investments: "1500000" });
+  const [goal, setGoal] = useState({ name: "Buy a car", amount: "1800000" });
+  const [preference, setPreference] = useState("balanced");
+  const [strategies, setStrategies] = useState<Strategy[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const update = (setter: React.Dispatch<React.SetStateAction<any>>, key: string, value: string) => setter((current: any) => ({ ...current, [key]: value }));
+  async function generate() {
+    setLoading(true); setError("");
+    const body = { profile: { monthly_income: +profile.income, monthly_expenses: +profile.expenses, cash_savings: +profile.savings, investments: +profile.investments, existing_debt: 0, monthly_debt_payment: 0 }, goal: { name: goal.name, category: "custom", target_amount: +goal.amount }, ranking_preference: preference, max_months: 120 };
+    try { const response = await fetch("http://localhost:8000/api/v1/strategies/generate", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }); if (!response.ok) throw new Error(); setStrategies(await response.json()); }
+    catch { setStrategies(demoStrategies); setError("Showing a sample analysis. Start the FastAPI server to run your live plan."); }
+    finally { setLoading(false); }
+  }
+  return <div className="app-shell"><nav className="topbar"><div className="brand"><span className="brand-mark">F</span>Finn<span className="gold">Strat</span></div><div className="nav-status"><span className="live-dot" /> Simulation engine <span className="divider" /> v0.1</div></nav><main className="content">
+    <section className="hero"><div><p className="kicker">FINANCIAL RESILIENCE ENGINE</p><h1>Make the big move.<br /><em>Keep your options open.</em></h1><p className="hero-copy">Compare the strongest paths to any financial goal—and see which ones can withstand the unexpected.</p></div><div className="hero-orbit"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><span>↓<small>RESILIENCE<br />OVER RETURNS</small></span></div></section>
+    <section className="workspace"><div className="panel form-panel"><div className="panel-heading"><div><p className="section-label">01 / YOUR STARTING POINT</p><h2>Build your financial context</h2></div><span className="step">1 of 2</span></div><div className="form-grid"><Field label="Monthly income" value={profile.income} onChange={v => update(setProfile, "income", v)} /><Field label="Monthly expenses" value={profile.expenses} onChange={v => update(setProfile, "expenses", v)} /><Field label="Cash savings" value={profile.savings} onChange={v => update(setProfile, "savings", v)} /><Field label="Investments" value={profile.investments} onChange={v => update(setProfile, "investments", v)} /></div><div className="goal-block"><p className="section-label">YOUR FINANCIAL GOAL</p><div className="goal-grid"><Field label="What are you planning?" value={goal.name} onChange={v => update(setGoal, "name", v)} /><Field label="Target amount" value={goal.amount} onChange={v => update(setGoal, "amount", v)} /></div></div><div className="preference"><label>Optimize for</label><div className="chips">{["balanced", "resilience", "speed", "wealth", "liquidity"].map(item => <button className={preference === item ? "chip active" : "chip"} onClick={() => setPreference(item)} key={item}>{item}</button>)}</div></div><button className="primary" onClick={generate} disabled={loading}>{loading ? "Running scenarios…" : "Generate top strategies  →"}</button></div>
+      <div className="panel insight-panel"><p className="section-label">THE FINNSTRAT LENS</p><div className="insight-quote">“The highest return is not always the strongest plan.”</div><div className="insight-line" /><p>Every strategy is tested against income disruption, market stress, unexpected expenses, and changing debt costs.</p><div className="mini-metric"><span>CONSTRAINTS TRACKED</span><strong>12</strong></div><div className="mini-metric"><span>MONTHLY SIMULATIONS</span><strong>120</strong></div></div></section>
+    {error && <div className="notice">{error}</div>}{strategies.length > 0 && <section className="results"><div className="results-heading"><div><p className="section-label">02 / YOUR SHORTLIST</p><h2>Top strategies for {goal.name.toLowerCase()}</h2></div><span className="results-note">Ranked by {preference}</span></div><div className="strategy-grid">{strategies.map((item, index) => <StrategyCard item={item} rank={index + 1} key={item.strategy.id} />)}</div></section>}
+  </main></div>;
+}
+function Field({ label, value, onChange }: { label: string; value: string; onChange: (value: string) => void }) { return <label className="field"><span>{label}</span><div className="input-wrap"><b>₹</b><input value={value} onChange={e => onChange(e.target.value)} /></div></label>; }
+function StrategyCard({ item, rank }: { item: Strategy; rank: number }) { return <article className={rank === 1 ? "strategy-card featured" : "strategy-card"}><div className="card-top"><span className="rank">0{rank}</span>{rank === 1 && <span className="recommended">RECOMMENDED</span>}</div><h3>{item.strategy.name}</h3><p className="strategy-type">{item.strategy.type.replaceAll("_", " ")}</p><div className="score-row"><div><span>OVERALL SCORE</span><strong>{Math.round(item.overall_score)}</strong><small>/100</small></div><div className="score-ring"><b>{Math.round(item.resilience_score)}</b></div></div><div className="card-stats"><div><span>MATURITY</span><strong>{item.maturity_month ? `Month ${item.maturity_month}` : "Not reached"}</strong></div><div><span>LIQUIDITY</span><strong>{Math.round(item.liquidity_score)}<small>/100</small></strong></div></div></article>; }
 export default App;
