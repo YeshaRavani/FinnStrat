@@ -1,50 +1,46 @@
+from contextlib import closing
+
 from app.schemas.financial import Scenario
+from app.services.dataset import connect_dataset
 
 
 def get_scenarios() -> list[Scenario]:
-    return [
-        Scenario(id="normal", name="Normal conditions"),
-        Scenario(
-            id="job_loss",
-            name="Job loss",
-            income_reduction_percent=0.60,
-            income_shock_start_month=6,
-            income_shock_duration_months=6,
-        ),
-        Scenario(
-            id="market_crash",
-            name="Market crash",
-            investment_shock_month=6,
-            investment_decline=0.30,
-        ),
-        Scenario(
-            id="medical_emergency",
-            name="Medical emergency",
-            emergency_expense_month=6,
-            emergency_expense=500000,
-        ),
-        Scenario(
-            id="interest_rate_rise",
-            name="Interest-rate rise",
-            interest_rate_increase=0.02,
-            interest_rate_shock_start_month=6,
-        ),
-        Scenario(
-            id="combined_shock",
-            name="Combined shock",
-            income_reduction_percent=0.60,
-            income_shock_start_month=6,
-            income_shock_duration_months=6,
-            investment_shock_month=6,
-            investment_decline=0.30,
-            emergency_expense_month=6,
-            emergency_expense=500000,
-            interest_rate_increase=0.02,
-            interest_rate_shock_start_month=6,
-            expense_increase_percent=0.10,
-            expense_increase_start_month=6,
-        ),
-    ]
+    ids = {
+        "baseline": "normal",
+        "job_loss_6m": "job_loss",
+        "rate_hike": "interest_rate_rise",
+        "compound_shock": "combined_shock",
+    }
+    with closing(connect_dataset()) as connection:
+        rows = connection.execute(
+            "SELECT * FROM stress_scenarios ORDER BY rowid"
+        ).fetchall()
+
+    scenarios = []
+    for row in rows:
+        dataset_id = row["scenario_id"]
+        scenarios.append(Scenario(
+            id=ids.get(dataset_id, dataset_id),
+            name={
+                "baseline": "Normal conditions",
+                "job_loss_6m": "Job loss",
+                "market_crash": "Market crash",
+                "medical_emergency": "Medical emergency",
+                "rate_hike": "Interest-rate rise",
+                "compound_shock": "Combined shock",
+            }.get(dataset_id, row["scenario_name"]),
+            income_multiplier=1,
+            income_reduction_percent=row["income_loss_percent"],
+            income_shock_start_month=row["income_loss_start_month"],
+            income_shock_duration_months=row["income_loss_duration_months"],
+            investment_shock_month=row["market_drop_month"],
+            investment_decline=row["market_drop_percent"],
+            emergency_expense_month=row["unexpected_expense_month"],
+            emergency_expense=row["unexpected_expense_amount"],
+            interest_rate_increase=row["rate_hike_percent_points"],
+            interest_rate_shock_start_month=row["rate_hike_start_month"],
+        ))
+    return scenarios
 
 
 def get_normal_and_stress_scenarios() -> tuple[Scenario, Scenario]:

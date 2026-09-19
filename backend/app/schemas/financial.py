@@ -1,4 +1,4 @@
-from typing import Literal
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -36,7 +36,7 @@ class FinancialGoal(BaseModel):
     name: str = Field(min_length=1, max_length=120)
     category: str = Field(min_length=1, max_length=60)
     target_amount: float = Field(gt=0)
-    target_date: str | None = None
+    target_date: Optional[str] = None
     priority: GoalPriority = "medium"
     flexibility: GoalFlexibility = "medium"
     inflation_rate: float = Field(default=0.06, ge=0, le=1)
@@ -52,7 +52,7 @@ class Strategy(BaseModel):
     loan_amount: float = Field(default=0, ge=0)
     monthly_contribution: float = Field(default=0, ge=0)
     investment_allocation: float = Field(default=0, ge=0, le=1)
-    purchase_month: int | None = Field(default=None, ge=0)
+    purchase_month: Optional[int] = Field(default=None, ge=0)
     annual_interest_rate: float = Field(default=0, ge=0, le=1)
     loan_term_months: int = Field(default=0, ge=0)
     explanation: str = Field(default="", max_length=500)
@@ -71,16 +71,16 @@ class Scenario(BaseModel):
     name: str = Field(min_length=1, max_length=120)
     income_multiplier: float = Field(default=1, ge=0, le=2)
     income_reduction_percent: float = Field(default=0, ge=0, le=1)
-    income_shock_start_month: int | None = Field(default=None, ge=1)
+    income_shock_start_month: Optional[int] = Field(default=None, ge=1)
     income_shock_duration_months: int = Field(default=0, ge=0)
-    investment_shock_month: int | None = Field(default=None, ge=1)
+    investment_shock_month: Optional[int] = Field(default=None, ge=1)
     investment_decline: float = Field(default=0, ge=0, le=1)
-    emergency_expense_month: int | None = Field(default=None, ge=1)
+    emergency_expense_month: Optional[int] = Field(default=None, ge=1)
     emergency_expense: float = Field(default=0, ge=0)
     interest_rate_increase: float = Field(default=0, ge=0, le=1)
-    interest_rate_shock_start_month: int | None = Field(default=None, ge=1)
+    interest_rate_shock_start_month: Optional[int] = Field(default=None, ge=1)
     expense_increase_percent: float = Field(default=0, ge=0, le=1)
-    expense_increase_start_month: int | None = Field(default=None, ge=1)
+    expense_increase_start_month: Optional[int] = Field(default=None, ge=1)
 
 
 class SimulationRequest(BaseModel):
@@ -109,15 +109,15 @@ class MonthlyResult(BaseModel):
 class SimulationResult(BaseModel):
     strategy_id: str
     scenario_id: str
-    maturity_month: int | None = None
+    maturity_month: Optional[int] = None
     goal_acquired: bool = False
     purchase_amount: float = 0
     down_payment_paid: float = 0
     loan_created: float = 0
-    breaking_point_month: int | None = None
-    breaking_point_cause: str | None = None
-    recovery_month: int | None = None
-    resilience_score: float | None = None
+    breaking_point_month: Optional[int] = None
+    breaking_point_cause: Optional[str] = None
+    recovery_month: Optional[int] = None
+    resilience_score: Optional[float] = None
     monthly_results: list[MonthlyResult] = Field(default_factory=list)
     status: Literal["pending", "completed"] = "pending"
 
@@ -131,7 +131,7 @@ class StrategyGenerationRequest(BaseModel):
 
 class RankedStrategy(BaseModel):
     strategy: Strategy
-    maturity_month: int | None
+    maturity_month: Optional[int]
     resilience_score: float
     goal_success_score: float
     liquidity_score: float

@@ -1,6 +1,9 @@
 from dataclasses import dataclass
+from typing import Optional
 
 from app.schemas.financial import (
+    GoalFlexibility,
+    GoalPriority,
     FinancialProfile,
     RankedStrategy,
     RankingPreference,
@@ -26,7 +29,7 @@ def _final_result(simulation: SimulationResult):
     return simulation.monthly_results[-1]
 
 
-def _score_speed(maturity_month: int | None, max_months: int) -> float:
+def _score_speed(maturity_month: Optional[int], max_months: int) -> float:
     if maturity_month is None:
         return 0.0
     return max(0.0, 100 - ((maturity_month - 1) / max_months * 100))
@@ -64,6 +67,8 @@ def calculate_strategy_scores(
     goal_amount: float,
     max_months: int,
     ranking_preference: RankingPreference,
+    goal_priority: GoalPriority = "medium",
+    goal_flexibility: GoalFlexibility = "medium",
 ) -> StrategyScores:
     resilience = float(stress_simulation.resilience_score or 0)
     success = 100.0 if normal_simulation.goal_acquired else 0.0
@@ -79,13 +84,25 @@ def calculate_strategy_scores(
         "liquidity": (0.25, 0.15, 0.40, 0.05, 0.05, 0.10),
         "low_debt": (0.25, 0.15, 0.15, 0.05, 0.10, 0.30),
     }[ranking_preference]
+    urgency_adjustment = {
+        "high": 0.04,
+        "medium": 0.0,
+        "low": -0.02,
+    }[goal_priority] + {
+        "low": 0.03,
+        "medium": 0.0,
+        "high": -0.02,
+    }[goal_flexibility]
+    adjusted_weights = list(weights)
+    adjusted_weights[0] -= urgency_adjustment
+    adjusted_weights[3] += urgency_adjustment
     overall = (
-        weights[0] * resilience
-        + weights[1] * success
-        + weights[2] * liquidity
-        + weights[3] * speed
-        + weights[4] * wealth
-        + weights[5] * debt
+        adjusted_weights[0] * resilience
+        + adjusted_weights[1] * success
+        + adjusted_weights[2] * liquidity
+        + adjusted_weights[3] * speed
+        + adjusted_weights[4] * wealth
+        + adjusted_weights[5] * debt
     )
     return StrategyScores(
         resilience_score=round(resilience, 2),

@@ -77,6 +77,63 @@ def test_saving_strategy_records_purchase_event_at_maturity():
     assert purchase_month.goal_asset_value == 0
 
 
+def test_appreciating_goal_value_grows_after_purchase():
+    result = simulate(
+        profile=FinancialProfile(
+            monthly_income=250000,
+            monthly_expenses=100000,
+            cash_savings=1500000,
+            investments=0,
+            existing_debt=0,
+            monthly_debt_payment=0,
+            emergency_reserve_months=3,
+        ),
+        goal=FinancialGoal(
+            name="Land",
+            category="land",
+            target_amount=1000000,
+            inflation_rate=0,
+            appreciation_rate=0.12,
+            asset_type="appreciating_asset",
+        ),
+        strategy=Strategy(id="save-land", name="Save", type="save_then_buy"),
+        scenario=Scenario(id="normal", name="Normal"),
+        max_months=13,
+    )
+
+    assert result.maturity_month == 1
+    assert result.monthly_results[12].goal_asset_value > result.monthly_results[0].goal_asset_value
+
+
+def test_financed_purchase_waits_out_structurally_negative_cash_flow():
+    result = simulate(
+        profile=FinancialProfile(
+            monthly_income=100000,
+            monthly_expenses=70000,
+            cash_savings=1000000,
+            investments=0,
+            existing_debt=0,
+            monthly_debt_payment=0,
+            emergency_reserve_months=3,
+        ),
+        goal=FinancialGoal(name="Vehicle", category="vehicle", target_amount=900000, inflation_rate=0),
+        strategy=Strategy(
+            id="finance-unstable",
+            name="Unstable finance",
+            type="financed_purchase",
+            down_payment=100000,
+            loan_amount=800000,
+            monthly_contribution=20000,
+            annual_interest_rate=0.10,
+            loan_term_months=36,
+        ),
+        scenario=Scenario(id="normal", name="Normal"),
+        max_months=6,
+    )
+
+    assert result.maturity_month is None
+
+
 def test_financed_purchase_creates_loan_and_reduces_balance():
     result = simulate(
         profile=FinancialProfile(
@@ -179,3 +236,22 @@ def test_reserve_breach_and_recovery_are_detected():
     assert result.breaking_point_month == 1
     assert result.breaking_point_cause == "emergency_reserve_breached"
     assert result.recovery_month is not None
+
+
+def test_identical_inputs_produce_identical_simulation_results():
+    profile = FinancialProfile(
+        monthly_income=250000,
+        monthly_expenses=100000,
+        cash_savings=900000,
+        investments=500000,
+        existing_debt=0,
+        monthly_debt_payment=0,
+    )
+    goal = FinancialGoal(name="Land", category="land", target_amount=1000000)
+    strategy = Strategy(id="save", name="Save", type="save_then_buy", monthly_contribution=40000)
+    scenario = Scenario(id="normal", name="Normal")
+
+    first = simulate(profile, goal, strategy, scenario, 24)
+    second = simulate(profile, goal, strategy, scenario, 24)
+
+    assert first == second

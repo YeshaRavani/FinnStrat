@@ -1,54 +1,159 @@
-import { useState } from "react";
-import { FinanceSketch } from "./components/FinanceSketch";
-import { Header } from "./components/Header";
-import { LensPanel } from "./components/LensPanel";
-import { PlanningPanel } from "./components/PlanningPanel";
-import { StrategyResults } from "./components/StrategyResults";
-import { ResilienceDashboard } from "./components/ResilienceDashboard";
+import { useEffect, useState } from "react";
+import { getScenarios, generateStrategies, runSimulation } from "./api/strategyApi";
+import { makeDemoScenario, mockScenarios, mockStrategies } from "./api/mockStrategies";
+import { assetTypeForGoalCategory, toStrategyRequest } from "./api/requestBuilder";
+import { BrandHeader } from "./components/BrandHeader";
+import { DashboardPage } from "./pages/DashboardPage";
+import { PlanningPage } from "./pages/PlanningPage";
+import { StrategyResultsPage } from "./pages/StrategyResultsPage";
 import type { FinancialProfileForm, GoalForm } from "./types/financial";
-import type { RankedStrategy, RankingPreference, StrategyRequest } from "./types/strategy";
-import { generateStrategies } from "./api/strategyApi";
+import type { RankedStrategy, RankingPreference, Scenario, SimulationRequest, SimulationResult, Strategy, StrategyRequest } from "./types/strategy";
 
-type Strategy = RankedStrategy;
-const demoSimulation = {
-  strategy_id: "demo",
-  scenario_id: "demo",
-  maturity_month: null,
-  goal_acquired: false,
-  purchase_amount: 0,
-  down_payment_paid: 0,
-  loan_created: 0,
-  breaking_point_month: null,
-  breaking_point_cause: null,
-  recovery_month: null,
-  resilience_score: 86,
-  monthly_results: [],
-  status: "completed" as const,
+type View = "planning" | "results" | "dashboard";
+
+const initialProfile: FinancialProfileForm = {
+  income: "250000",
+  expenses: "100000",
+  savings: "3000000",
+  investments: "1500000",
+  existingDebt: "0",
+  monthlyDebtPayment: "0",
+  emergencyMonths: "6",
+  riskTolerance: "medium",
 };
-const demoStrategies: Strategy[] = [
-  { strategy: { id: "hybrid", name: "Hybrid reserve-first plan", type: "hybrid", down_payment: 0, loan_amount: 0, monthly_contribution: 0, investment_allocation: 0, purchase_month: null, annual_interest_rate: 0, loan_term_months: 0, explanation: "Sample result" }, maturity_month: 11, resilience_score: 86, goal_success_score: 100, liquidity_score: 91, speed_score: 90, wealth_score: 70, debt_score: 80, overall_score: 84, normal_simulation: { ...demoSimulation, strategy_id: "hybrid", scenario_id: "normal" }, stress_simulation: { ...demoSimulation, strategy_id: "hybrid", scenario_id: "combined_shock" } },
-  { strategy: { id: "save_then_buy", name: "Save and buy later", type: "save_then_buy", down_payment: 0, loan_amount: 0, monthly_contribution: 0, investment_allocation: 0, purchase_month: null, annual_interest_rate: 0, loan_term_months: 0, explanation: "Sample result" }, maturity_month: 17, resilience_score: 93, goal_success_score: 100, liquidity_score: 95, speed_score: 85, wealth_score: 72, debt_score: 100, overall_score: 82, normal_simulation: { ...demoSimulation, strategy_id: "save_then_buy", scenario_id: "normal", maturity_month: 17, goal_acquired: true }, stress_simulation: { ...demoSimulation, strategy_id: "save_then_buy", scenario_id: "combined_shock", maturity_month: 17, goal_acquired: true } },
-];
+
+const initialGoal: GoalForm = {
+  name: "Buy a car",
+  amount: "1800000",
+  category: "vehicle",
+  targetDate: "",
+  priority: "high",
+  flexibility: "medium",
+  inflationRate: "6",
+  appreciationRate: "0",
+  assetType: "depreciating_asset",
+};
 
 function App() {
-  const [profile, setProfile] = useState<FinancialProfileForm>({ income: "250000", expenses: "100000", savings: "3000000", investments: "1500000", emergencyMonths: "6", riskTolerance: "medium" });
-  const [goal, setGoal] = useState<GoalForm>({ name: "Buy a car", amount: "1800000", category: "vehicle", priority: "high", flexibility: "medium" });
+  const [profile, setProfile] = useState(initialProfile);
+  const [goal, setGoal] = useState(initialGoal);
   const [preference, setPreference] = useState<RankingPreference>("balanced");
-  const [strategies, setStrategies] = useState<Strategy[]>([]);
+  const [view, setView] = useState<View>("planning");
+  const [strategies, setStrategies] = useState<RankedStrategy[]>([]);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [modifiedStrategy, setModifiedStrategy] = useState<Strategy | null>(null);
+  const [comparedIds, setComparedIds] = useState<string[]>([]);
+  const [scenarios, setScenarios] = useState<Scenario[]>([]);
+  const [scenarioCatalogDemo, setScenarioCatalogDemo] = useState(false);
+  const [activeScenarioId, setActiveScenarioId] = useState("normal");
+  const [simulation, setSimulation] = useState<SimulationResult | null>(null);
+  const [lastRequest, setLastRequest] = useState<StrategyRequest | null>(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [selected, setSelected] = useState<Strategy | null>(null);
+  const [scenarioLoading, setScenarioLoading] = useState(false);
   const [isDemo, setIsDemo] = useState(false);
+  const [error, setError] = useState("");
+  const [scenarioError, setScenarioError] = useState("");
+
+  useEffect(() => {
+    let active = true;
+    getScenarios().then(result => {
+      if (active) setScenarios(result);
+    }).catch(() => {
+      if (active) {
+        setScenarios(mockScenarios);
+        setScenarioCatalogDemo(true);
+      }
+    });
+    return () => { active = false; };
+  }, []);
 
   const updateProfile = (key: keyof FinancialProfileForm, value: string) => setProfile(current => ({ ...current, [key]: value }));
-  const updateGoal = (key: keyof GoalForm, value: string) => setGoal(current => ({ ...current, [key]: value }));
-  const generate = async () => { setLoading(true); setError(""); setIsDemo(false); const request: StrategyRequest = { profile: { monthly_income: +profile.income, monthly_expenses: +profile.expenses, cash_savings: +profile.savings, investments: +profile.investments, existing_debt: 0, monthly_debt_payment: 0, emergency_reserve_months: +profile.emergencyMonths, risk_tolerance: profile.riskTolerance }, goal: { name: goal.name, category: goal.category, target_amount: +goal.amount, target_date: null, priority: goal.priority, flexibility: goal.flexibility, inflation_rate: 0.06, appreciation_rate: 0 }, ranking_preference: preference, max_months: 120 }; try { const result = await generateStrategies(request); setStrategies(result); setSelected(result[0] ?? null); } catch (cause) { setStrategies(demoStrategies); setSelected(demoStrategies[0]); setIsDemo(true); const reason = cause instanceof Error ? cause.message : "Unknown API error"; setError(`Showing sample strategies. Live analysis failed: ${reason}`); } finally { setLoading(false); } };
+  const updateGoal = (key: keyof GoalForm, value: string) => setGoal(current => {
+    if (key !== "category") return { ...current, [key]: value };
+    const category = value;
+    const assetType = assetTypeForGoalCategory(category);
+    return { ...current, category, assetType };
+  });
 
-  return <div className="app-shell"><Header /><main className="content">
-    <section className="hero"><div><p className="kicker">FINANCIAL RESILIENCE ENGINE</p><h1>Make the big move.<br /><em>Keep your options open.</em></h1><p className="hero-copy">Compare the strongest paths to any financial goal—and see which ones can withstand the unexpected.</p></div><FinanceSketch /></section>
-    <section className="workspace"><PlanningPanel profile={profile} goal={goal} preference={preference} loading={loading} onProfileChange={updateProfile} onGoalChange={updateGoal} onPreferenceChange={setPreference} onGenerate={generate} /><LensPanel /></section>
-    {error && <div className="notice">{error}</div>}{strategies.length > 0 && <StrategyResults strategies={strategies} goalName={goal.name} preference={preference} selectedId={selected?.strategy.id} isDemo={isDemo} onSelect={setSelected} />}{selected && <ResilienceDashboard item={selected} />}
-  </main></div>;
+  const generate = async (nextPreference: RankingPreference = preference) => {
+    const request = toStrategyRequest(profile, goal, nextPreference);
+    setLoading(true);
+    setError("");
+    setPreference(nextPreference);
+    setLastRequest(request);
+    try {
+      const result = await generateStrategies(request);
+      setStrategies(result);
+      setIsDemo(false);
+      setSelectedId(result[0]?.strategy.id ?? null);
+      setModifiedStrategy(null);
+      setSimulation(result[0]?.normal_simulation ?? null);
+    } catch (cause) {
+      const reason = cause instanceof Error ? cause.message : "Unknown API error";
+      setStrategies(mockStrategies);
+      setIsDemo(true);
+      setSelectedId(mockStrategies[0].strategy.id);
+      setModifiedStrategy(null);
+      setSimulation(mockStrategies[0].normal_simulation);
+      setError(`Live analysis failed: ${reason}. Showing clearly labeled demo results.`);
+    } finally {
+      setComparedIds([]);
+      setActiveScenarioId("normal");
+      setView("results");
+      setLoading(false);
+    }
+  };
+
+  const selected = strategies.find(item => item.strategy.id === selectedId) ?? null;
+  const openDashboard = (item: RankedStrategy) => {
+    setSelectedId(item.strategy.id);
+    setModifiedStrategy(null);
+    setActiveScenarioId("normal");
+    setSimulation(item.normal_simulation);
+    setScenarioError("");
+    setView("dashboard");
+  };
+
+  const runScenario = async (scenarioId = activeScenarioId, strategyOverride: Strategy | null = modifiedStrategy) => {
+    if (!selected) return;
+    const strategy = strategyOverride ?? selected.strategy;
+    setActiveScenarioId(scenarioId);
+    setScenarioLoading(true);
+    setScenarioError("");
+    if (isDemo) {
+      setSimulation(makeDemoScenario(selected, scenarioId));
+      setScenarioLoading(false);
+      return;
+    }
+    setSimulation(null);
+    const scenario = scenarios.find(item => item.id === scenarioId);
+    if (!scenario || !lastRequest) {
+      setScenarioError("Scenario details are unavailable. Refresh the page and try again.");
+      setScenarioLoading(false);
+      return;
+    }
+    const request: SimulationRequest = { ...lastRequest, strategy, scenario };
+    try {
+      setSimulation(await runSimulation(request));
+    } catch (cause) {
+      setScenarioError(cause instanceof Error ? cause.message : "Scenario simulation failed.");
+    } finally {
+      setScenarioLoading(false);
+    }
+  };
+
+  const toggleCompared = (id: string, checked: boolean) => setComparedIds(current => checked
+    ? current.length >= 4 ? current : [...current, id]
+    : current.filter(item => item !== id));
+
+  return (
+    <div className="app-shell">
+      <BrandHeader />
+      {view === "planning" && <main className="content"><PlanningPage profile={profile} goal={goal} loading={loading} onProfileChange={updateProfile} onGoalChange={updateGoal} onGenerate={() => generate()} /></main>}
+      {view === "results" && <StrategyResultsPage strategies={strategies} goalName={goal.name} preference={preference} selectedId={selectedId} comparedIds={comparedIds} loading={loading} isDemo={isDemo} error={error} onSelect={item => setSelectedId(item.strategy.id)} onOpen={openDashboard} onCompare={toggleCompared} onPreferenceChange={next => { void generate(next); }} onRetry={() => { void generate(); }} onEdit={() => setView("planning")} />}
+      {view === "dashboard" && selected && <DashboardPage item={selected} strategy={modifiedStrategy ?? selected.strategy} isModified={modifiedStrategy !== null} targetAmount={lastRequest?.goal.target_amount ?? Number(goal.amount)} scenarios={scenarios} scenarioId={activeScenarioId} simulation={simulation} loading={scenarioLoading} error={scenarioError || (scenarioCatalogDemo ? "Using sample scenario definitions." : "")} isDemo={isDemo} profile={lastRequest?.profile ?? toStrategyRequest(profile, goal, preference).profile} onApplyAdjustment={strategy => { setModifiedStrategy(strategy); void runScenario(activeScenarioId, strategy); }} onScenarioChange={id => { void runScenario(id); }} onBack={() => setView("results")} onRetry={() => { void runScenario(); }} />}
+    </div>
+  );
 }
 
 export default App;

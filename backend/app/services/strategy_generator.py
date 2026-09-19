@@ -54,34 +54,34 @@ def _candidate_strategies(profile: FinancialProfile, goal: FinancialGoal) -> lis
     down_payment_percentages = [0.10, 0.20, 0.30, 0.40]
     monthly_contribution_percentages = [0.25, 0.50, 0.75]
     loan_terms = [36, 60, 84, 120]
-    investment_allocations = [0.00, 0.25, 0.50]
+    investment_allocations = [0.25, 0.50]
     purchase_delays = [0, 6, 12, 24]
     interest_rate = _goal_interest_rate(goal, profile)
     candidates: list[Strategy] = []
 
     for contribution_percent in monthly_contribution_percentages:
-        for allocation in investment_allocations:
-            for delay in purchase_delays:
-                contribution = surplus * contribution_percent
-                save_strategy = Strategy(
-                    id=f"save_{int(contribution_percent * 100)}_{int(allocation * 100)}_{delay}",
-                    name="Save then buy",
-                    type="save_then_buy",
-                    monthly_contribution=contribution,
-                    investment_allocation=allocation,
-                    purchase_month=delay,
-                    explanation="Build the full purchase amount before acquiring the goal.",
-                )
+        for delay in purchase_delays:
+            contribution = surplus * contribution_percent
+            candidates.append(Strategy(
+                id=f"save_{int(contribution_percent * 100)}_0_{delay}",
+                name="Save then buy",
+                type="save_then_buy",
+                monthly_contribution=contribution,
+                investment_allocation=0,
+                purchase_month=delay,
+                explanation="Build the full purchase amount in cash before acquiring the goal.",
+            ))
+            for allocation in investment_allocations:
                 invest_strategy = Strategy(
                     id=f"invest_{int(contribution_percent * 100)}_{int(allocation * 100)}_{delay}",
                     name="Invest while saving",
                     type="invest_then_buy",
                     monthly_contribution=contribution,
-                    investment_allocation=max(allocation, 0.25),
+                    investment_allocation=allocation,
                     purchase_month=delay,
                     explanation="Use monthly surplus and investments to reach the goal amount.",
                 )
-                candidates.extend([save_strategy, invest_strategy])
+                candidates.append(invest_strategy)
 
     for down_percent in down_payment_percentages:
         down_payment = goal.target_amount * down_percent
@@ -130,6 +130,14 @@ def _candidate_strategies(profile: FinancialProfile, goal: FinancialGoal) -> lis
     return [strategy for strategy in candidates if _is_immediately_feasible(profile, strategy)]
 
 
+def _strategy_configuration(strategy: Strategy) -> tuple:
+    values = strategy.model_dump(exclude={"id", "name", "explanation", "type"})
+    values["purchase_mode"] = (
+        "financed" if strategy.type in {"financed_purchase", "hybrid"} else "cash"
+    )
+    return tuple(sorted(values.items()))
+
+
 def generate_ranked_strategies(request: StrategyGenerationRequest) -> list[RankedStrategy]:
     normal_scenario, stress_scenario = get_normal_and_stress_scenarios()
     ranked: list[RankedStrategy] = []
@@ -147,6 +155,8 @@ def generate_ranked_strategies(request: StrategyGenerationRequest) -> list[Ranke
             goal_amount=request.goal.target_amount,
             max_months=request.max_months,
             ranking_preference=request.ranking_preference,
+            goal_priority=request.goal.priority,
+            goal_flexibility=request.goal.flexibility,
         )
         ranked.append(build_ranked_strategy(
             strategy=strategy,
@@ -155,5 +165,49 @@ def generate_ranked_strategies(request: StrategyGenerationRequest) -> list[Ranke
             scores=scores,
         ))
 
-    non_dominated = remove_dominated_strategies(ranked)
-    return sorted(non_dominated, key=lambda item: item.overall_score, reverse=True)[:7]
+    rank_key = lambda item: (
+            -item.overall_score,
+            -item.resilience_score,
+            -item.liquidity_score,
+            -item.speed_score,
+            item.maturity_month or request.max_months + 1,
+            item.strategy.id,
+        )
+    ordered = sorted(ranked, key=rank_key)
+    unique: list[RankedStrategy] = []
+    seen_configurations: set[tuple] = set()
+    for item in ordered:
+        configuration = _strategy_configuration(item.strategy)
+        if configuration in seen_configurations:
+            continue
+        seen_configurations.add(configuration)
+        unique.append(item)
+
+    non_dominated = remove_dominated_strategies(unique)
+    selected: list[RankedStrategy] = []
+    family_counts: dict[str, int] = {}
+
+    # Reserve one slot for each feasible strategy family before filling by score.
+    for item in unique:
+        family = item.strategy.type
+        if family in family_counts:
+            continue
+        selected.append(item)
+        family_counts[family] = 1
+
+    selected_configurations = {
+        _strategy_configuration(item.strategy) for item in selected
+    }
+    for item in non_dominated:
+        family = item.strategy.type
+        configuration = _strategy_configuration(item.strategy)
+        if configuration in selected_configurations or family_counts.get(family, 0) >= 3:
+            continue
+        selected.append(item)
+        selected_configurations.add(configuration)
+        family_counts[family] = family_counts.get(family, 0) + 1
+        if len(selected) == 7:
+            break
+
+    selected.sort(key=rank_key)
+    return selected

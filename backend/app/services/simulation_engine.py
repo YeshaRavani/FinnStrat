@@ -169,12 +169,18 @@ def simulate(
                 affordable_emi = (
                     income > 0
                     and test_emi / income <= profile.max_emi_to_income_ratio
-                    and income - expenses - profile.monthly_debt_payment - test_emi >= 0
+                    and income
+                    - expenses
+                    - profile.monthly_debt_payment
+                    - test_emi
+                    - strategy.monthly_contribution
+                    >= 0
                 )
             maturity_ready = (
                 purchase_timing_ready
                 and _available_for_purchase(cash, investments, reserve_target) >= amount_needed_from_assets
                 and affordable_emi
+                and consecutive_negative < 3
             )
             if maturity_ready:
                 maturity_month = month
