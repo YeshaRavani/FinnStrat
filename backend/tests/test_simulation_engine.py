@@ -1,3 +1,5 @@
+import pytest
+
 from app.schemas.financial import FinancialGoal, FinancialProfile, Scenario, Strategy
 from app.services.simulation_engine import calculate_emi, inflation_adjusted_goal_cost, simulate
 
@@ -163,6 +165,94 @@ def test_financed_purchase_creates_loan_and_reduces_balance():
     later_month = result.monthly_results[-1]
     assert purchase_month.loan_created == 700000
     assert later_month.loan_balance < purchase_month.loan_balance
+
+
+def test_new_loan_uses_fixed_emi_and_full_term_for_first_payment():
+    expected_emi = calculate_emi(700000, 0.08, 60)
+    result = simulate(
+        profile=FinancialProfile(
+            monthly_income=300000,
+            monthly_expenses=80000,
+            cash_savings=700000,
+            investments=0,
+            existing_debt=0,
+            monthly_debt_payment=0,
+            expected_annual_investment_return=0,
+        ),
+        goal=FinancialGoal(name="Car", category="vehicle", target_amount=1000000, inflation_rate=0),
+        strategy=Strategy(
+            id="finance-fixed-emi", name="Finance", type="financed_purchase",
+            down_payment=300000, loan_amount=700000, annual_interest_rate=0.08,
+            loan_term_months=60,
+        ),
+        scenario=Scenario(id="normal", name="Normal"),
+        max_months=3,
+    )
+
+    assert result.monthly_results[0].monthly_cash_flow == 220000
+    assert result.monthly_results[1].monthly_cash_flow == round(220000 - expected_emi, 2)
+    assert result.monthly_results[2].monthly_cash_flow == round(220000 - expected_emi, 2)
+
+
+def test_new_loan_emi_reprices_over_remaining_term_after_rate_shock():
+    result = simulate(
+        profile=FinancialProfile(
+            monthly_income=300000,
+            monthly_expenses=80000,
+            cash_savings=700000,
+            investments=0,
+            existing_debt=0,
+            monthly_debt_payment=0,
+            expected_annual_investment_return=0,
+        ),
+        goal=FinancialGoal(name="Car", category="vehicle", target_amount=1000000, inflation_rate=0),
+        strategy=Strategy(
+            id="finance-rate-shock", name="Finance", type="financed_purchase",
+            down_payment=300000, loan_amount=700000, annual_interest_rate=0.08,
+            loan_term_months=60,
+        ),
+        scenario=Scenario(
+            id="rate-rise", name="Rate rise", interest_rate_increase=0.02,
+            interest_rate_shock_start_month=3,
+        ),
+        max_months=4,
+    )
+
+    base_emi = calculate_emi(700000, 0.08, 60)
+    assert result.monthly_results[1].monthly_cash_flow == round(220000 - base_emi, 2)
+    assert result.monthly_results[2].monthly_cash_flow < result.monthly_results[1].monthly_cash_flow
+
+
+def test_existing_debt_amortizes_and_payment_stops_after_payoff():
+    result = simulate(
+        profile=FinancialProfile(
+            monthly_income=100000,
+            monthly_expenses=30000,
+            cash_savings=100000,
+            investments=0,
+            existing_debt=20200,
+            monthly_debt_payment=11000,
+            existing_debt_annual_interest_rate=0.12,
+            expected_annual_investment_return=0,
+        ),
+        goal=FinancialGoal(name="Goal", category="custom", target_amount=1000000, inflation_rate=0),
+        strategy=Strategy(id="save", name="Save", type="save_then_buy"),
+        scenario=Scenario(id="normal", name="Normal"),
+        max_months=3,
+    )
+
+    assert result.monthly_results[0].existing_debt_balance == 9402
+    assert result.monthly_results[1].existing_debt_balance == 0
+    assert result.monthly_results[2].monthly_cash_flow == 70000
+    assert result.monthly_results[2].net_worth == result.monthly_results[2].cash_balance
+
+
+def test_dataset_monthly_series_calibrates_return_by_risk_band():
+    from app.services.dataset import calibrated_investment_return
+
+    assert calibrated_investment_return("low") == pytest.approx((1 + 0.07 / 12) ** 12 - 1, abs=0.0001)
+    assert calibrated_investment_return("medium") == pytest.approx((1 + 0.095 / 12) ** 12 - 1, abs=0.0001)
+    assert calibrated_investment_return("high") == pytest.approx((1 + 0.12 / 12) ** 12 - 1, abs=0.0001)
 
 
 def test_investment_crash_income_loss_and_emergency_expense_affect_results():

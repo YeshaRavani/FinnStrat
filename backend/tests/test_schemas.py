@@ -15,7 +15,7 @@ def test_profile_accepts_valid_financial_data():
     )
 
     assert profile.risk_tolerance == "medium"
-    assert profile.expected_annual_investment_return == 0.10
+    assert profile.expected_annual_investment_return is None
     assert profile.max_emi_to_income_ratio == 0.45
 
 

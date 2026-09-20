@@ -10,6 +10,7 @@ export type FinancialProfileForm = {
   investments: string;
   existingDebt: string;
   monthlyDebtPayment: string;
+  existingDebtAnnualInterestRate: string;
   emergencyMonths: string;
   riskTolerance: RiskTolerance;
 };

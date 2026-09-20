@@ -45,7 +45,8 @@ def _is_immediately_feasible(profile: FinancialProfile, strategy: Strategy) -> b
         )
     return (
         profile.monthly_income > 0
-        and initial_emi / profile.monthly_income <= profile.max_emi_to_income_ratio
+        and (initial_emi + profile.monthly_debt_payment) / profile.monthly_income
+        <= profile.max_emi_to_income_ratio
     )
 
 

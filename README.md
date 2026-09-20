@@ -15,7 +15,11 @@ The project dataset is available in two forms under `data/`:
 - `data/finnstrat.sqlite`: runtime SQLite database used by the backend and ready for local queries.
 - `data/finnstrat.sql`: portable SQL dump for inspection, backup, or rebuilding the SQLite database.
 
-The backend opens the bundled SQLite database read-only. Its `stress_scenarios` rows provide the live API scenario catalog and the same scenario definitions used during strategy generation. Set `FINNSTRAT_DB_PATH` to use another compatible SQLite file. The SQL dump is not loaded on every server start; it is the portable export of the dataset, while SQLite is the efficient runtime format. The two checked-in files currently contain identical rows. Historical profile, strategy, and monthly simulation rows are reference data; live plans are calculated from the profile and goal submitted to the API, not copied from those examples.
+The backend opens the bundled SQLite database read-only. Its `stress_scenarios` rows provide the live API scenario catalog and the same scenario definitions used during strategy generation. Set `FINNSTRAT_DB_PATH` to use another compatible SQLite file. The SQL dump is not loaded on every server start; it is the portable export of the dataset, while SQLite is the efficient runtime format. The two checked-in files currently contain identical rows.
+
+For investment growth, the backend estimates a default annual return from month-to-month changes in baseline `full_cash` investment series in `monthly_simulations`, grouped by dataset risk band and mapped to the form's low/medium/high choices. An explicit `expected_annual_investment_return` in an API profile overrides this calibration. These monthly rows are synthetic model outputs, not observed market prices or verified real-world historical returns; the calibration reproduces the dataset's assumptions and should not be interpreted as a forecast.
+
+Existing debt is represented as one aggregate balance with a blended annual interest rate and monthly payment. The simulator accrues monthly interest, applies the payment up to the amount due, stops charging the installment once the modeled balance is paid, and reports the remaining balance in net worth. This is an estimate for multiple debts; it does not model separate loan schedules, fees, changing rates, or missed payments. New financed purchases use a fixed base EMI recalculated over the remaining contractual term when a scenario changes the interest rate; the first installment is paid one month after purchase.
 
 Tables:
 

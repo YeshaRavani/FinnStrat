@@ -27,7 +27,7 @@ export function loanSummary(strategy: Strategy, maturityMonth: number | null) {
   return {
     emi,
     totalInterest: Math.max(0, emi * strategy.loan_term_months - strategy.loan_amount),
-    payoffMonth: maturityMonth === null ? null : maturityMonth + strategy.loan_term_months - 1,
+    payoffMonth: maturityMonth === null ? null : maturityMonth + strategy.loan_term_months,
   };
 }
 

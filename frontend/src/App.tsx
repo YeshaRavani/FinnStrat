@@ -18,6 +18,7 @@ const initialProfile: FinancialProfileForm = {
   investments: "1500000",
   existingDebt: "0",
   monthlyDebtPayment: "0",
+  existingDebtAnnualInterestRate: "0",
   emergencyMonths: "6",
   riskTolerance: "medium",
 };

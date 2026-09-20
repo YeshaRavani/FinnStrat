@@ -31,6 +31,8 @@ export function PlanningPage({ profile, goal, loading, onProfileChange, onGoalCh
     if (income <= 0) errors.income = "Monthly income must be greater than zero.";
     if (expenses > income) errors.expenses = "Expenses cannot exceed monthly income.";
     if (Number(profile.monthlyDebtPayment) > income) errors.monthlyDebtPayment = "Debt payments cannot exceed monthly income.";
+    const debtRate = Number(profile.existingDebtAnnualInterestRate);
+    if (!Number.isFinite(debtRate) || debtRate < 0 || debtRate > 100) errors.existingDebtAnnualInterestRate = "Use an annual rate between 0 and 100 percent.";
     setProfileErrors(errors);
     if (Object.keys(errors).length === 0) setStep("goal");
   };

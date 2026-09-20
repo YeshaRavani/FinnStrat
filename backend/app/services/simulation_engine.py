@@ -6,6 +6,7 @@ from app.schemas.financial import (
     SimulationResult,
     Strategy,
 )
+from app.services.dataset import calibrated_investment_return
 
 
 def calculate_emi(principal: float, annual_rate: float, term_months: int) -> float:
@@ -78,6 +79,7 @@ def simulate(
 ) -> SimulationResult:
     cash = profile.cash_savings
     investments = profile.investments
+    existing_debt_balance = profile.existing_debt
     loan_balance = 0.0
     goal_asset_value = 0.0
     reserve_target = profile.monthly_expenses * profile.emergency_reserve_months
@@ -93,6 +95,9 @@ def simulate(
     recovered = False
     consecutive_negative = 0
     monthly_results: list[MonthlyResult] = []
+    annual_return = profile.expected_annual_investment_return
+    if annual_return is None:
+        annual_return = calibrated_investment_return(profile.risk_tolerance)
 
     for month in range(1, max_months + 1):
         income = profile.monthly_income * scenario.income_multiplier
@@ -107,9 +112,15 @@ def simulate(
         if _is_rate_shock_active(scenario, month):
             active_rate += scenario.interest_rate_increase
 
+        existing_debt_interest = existing_debt_balance * profile.existing_debt_annual_interest_rate / 12
+        active_existing_debt_payment = min(
+            profile.monthly_debt_payment,
+            existing_debt_balance + existing_debt_interest,
+        )
         remaining_term = strategy.loan_term_months
         if loan_start_month is not None:
-            remaining_term = max(1, strategy.loan_term_months - (month - loan_start_month))
+            payments_made = month - loan_start_month - 1
+            remaining_term = max(1, strategy.loan_term_months - payments_made)
         monthly_emi = 0.0
         if loan_balance > 0:
             monthly_emi = calculate_emi(
@@ -118,7 +129,7 @@ def simulate(
                 remaining_term,
             )
 
-        investment_return = investments * ((1 + profile.expected_annual_investment_return) ** (1 / 12) - 1)
+        investment_return = investments * ((1 + annual_return) ** (1 / 12) - 1)
         investments += investment_return
         if month == scenario.investment_shock_month:
             investments *= 1 - scenario.investment_decline
@@ -134,7 +145,7 @@ def simulate(
         monthly_cash_flow = (
             income
             - expenses
-            - profile.monthly_debt_payment
+            - active_existing_debt_payment
             - monthly_emi
             - contribution
             - one_time_expense
@@ -147,6 +158,12 @@ def simulate(
             monthly_rate = active_rate / 12
             interest = loan_balance * monthly_rate
             loan_balance = max(0, loan_balance - (monthly_emi - interest))
+
+        if existing_debt_balance > 0:
+            existing_debt_balance = max(
+                0,
+                existing_debt_balance + existing_debt_interest - active_existing_debt_payment,
+            )
 
         if maturity_month is None:
             target_cost = inflation_adjusted_goal_cost(goal, month)
@@ -168,10 +185,11 @@ def simulate(
                 )
                 affordable_emi = (
                     income > 0
-                    and test_emi / income <= profile.max_emi_to_income_ratio
+                    and (test_emi + active_existing_debt_payment) / income
+                    <= profile.max_emi_to_income_ratio
                     and income
                     - expenses
-                    - profile.monthly_debt_payment
+                    - active_existing_debt_payment
                     - test_emi
                     - strategy.monthly_contribution
                     >= 0
@@ -213,7 +231,8 @@ def simulate(
             consecutive_negative = 0
         if consecutive_negative >= 3:
             breaches.append("negative_cash_flow")
-        if income > 0 and monthly_emi / income > profile.max_emi_to_income_ratio:
+        total_monthly_emi = active_existing_debt_payment + monthly_emi
+        if income > 0 and total_monthly_emi / income > profile.max_emi_to_income_ratio:
             breaches.append("emi_affordability_limit")
         if cash < 0:
             breaches.append("cash_depleted")
@@ -226,13 +245,14 @@ def simulate(
             recovered = True
             recovery_month = month
 
-        net_worth = cash + investments + goal_asset_value - loan_balance - profile.existing_debt
+        net_worth = cash + investments + goal_asset_value - loan_balance - existing_debt_balance
         monthly_results.append(
             MonthlyResult(
                 month=month,
                 cash_balance=round(cash, 2),
                 investment_value=round(investments, 2),
                 loan_balance=round(loan_balance, 2),
+                existing_debt_balance=round(existing_debt_balance, 2),
                 goal_asset_value=round(goal_asset_value, 2),
                 net_worth=round(net_worth, 2),
                 monthly_cash_flow=round(monthly_cash_flow, 2),

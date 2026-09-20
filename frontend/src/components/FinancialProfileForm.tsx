@@ -25,6 +25,7 @@ export function FinancialProfileForm({ profile, errors, onChange }: Props) {
         {currency("investments", "Investments", "Current market value of your investments.")}
         {currency("existingDebt", "Existing debt", "Outstanding balances across current loans.")}
         {currency("monthlyDebtPayment", "Monthly debt payments", "Monthly payments on current debt.")}
+        {currency("existingDebtAnnualInterestRate", "Existing debt interest (% annual)", "A blended annual rate used to estimate how your current debt balance amortizes.")}
       </div>
       <div className="control-grid">
         <SelectField label="Emergency reserve" value={profile.emergencyMonths} onChange={value => onChange("emergencyMonths", value)} help="Cash kept aside for essential expenses." options={[3, 6, 9, 12].map(value => ({ value: String(value), label: `${value} months` }))} />

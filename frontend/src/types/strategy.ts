@@ -11,6 +11,7 @@ export type StrategyRequest = {
     investments: number;
     existing_debt: number;
     monthly_debt_payment: number;
+    existing_debt_annual_interest_rate: number;
     emergency_reserve_months: number;
     risk_tolerance: RiskTolerance;
   };
@@ -48,6 +49,7 @@ export type MonthlyResult = {
   cash_balance: number;
   investment_value: number;
   loan_balance: number;
+  existing_debt_balance: number;
   goal_asset_value: number;
   net_worth: number;
   monthly_cash_flow: number;

@@ -15,6 +15,7 @@ function sampleSimulation(strategyId: string, scenarioId: string, cashStart: num
       cash_balance: cash,
       investment_value: investments,
       loan_balance: loanBalance,
+      existing_debt_balance: 0,
       goal_asset_value: assetValue,
       net_worth: cash + investments + assetValue - loanBalance,
       monthly_cash_flow: shock ? -20000 : 50000,

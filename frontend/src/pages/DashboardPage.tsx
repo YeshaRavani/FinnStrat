@@ -32,7 +32,7 @@ export function DashboardPage({ item, strategy, isModified, targetAmount, scenar
   const lowestCash = results.length ? Math.min(...results.map(result => result.cash_balance)) : null;
   const final = results[results.length - 1];
   const resilience = simulation?.resilience_score ?? item.resilience_score;
-  const debtPoints = results.map(result => ({ month: result.month, value: result.loan_balance + profile.existing_debt }));
+  const debtPoints = results.map(result => ({ month: result.month, value: result.loan_balance + result.existing_debt_balance }));
 
   return (
     <main className="content dashboard-page">

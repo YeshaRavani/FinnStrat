@@ -38,6 +38,7 @@ describe("app integration", () => {
     const body = JSON.parse(String(generateCall?.[1]?.body));
     expect(body.profile.existing_debt).toBe(0);
     expect(body.profile.monthly_debt_payment).toBe(0);
+    expect(body.profile.existing_debt_annual_interest_rate).toBe(0);
     expect(body.goal.asset_type).toBe("consumable");
     expect(body.goal.category).toBe("education");
 

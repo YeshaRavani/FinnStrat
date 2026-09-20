@@ -18,9 +18,10 @@ class FinancialProfile(BaseModel):
     investments: float = Field(ge=0)
     existing_debt: float = Field(ge=0)
     monthly_debt_payment: float = Field(ge=0)
+    existing_debt_annual_interest_rate: float = Field(default=0, ge=0, le=1)
     emergency_reserve_months: float = Field(default=6, ge=1, le=36)
     risk_tolerance: RiskTolerance = "medium"
-    expected_annual_investment_return: float = Field(default=0.10, ge=-1, le=1)
+    expected_annual_investment_return: Optional[float] = Field(default=None, ge=-1, le=1)
     max_emi_to_income_ratio: float = Field(default=0.45, ge=0, le=1)
 
     @field_validator("monthly_expenses")
@@ -96,6 +97,7 @@ class MonthlyResult(BaseModel):
     cash_balance: float
     investment_value: float
     loan_balance: float
+    existing_debt_balance: float = 0
     goal_asset_value: float = 0
     net_worth: float
     monthly_cash_flow: float
