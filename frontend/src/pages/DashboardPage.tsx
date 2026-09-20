@@ -6,6 +6,7 @@ import { NetWorthChart } from "../components/NetWorthChart";
 import { ScenarioSelector } from "../components/ScenarioSelector";
 import { StrategyAdjustmentPanel } from "../components/StrategyAdjustmentPanel";
 import { TrendChart } from "../components/TrendChart";
+import { BackButton } from "../components/BackButton";
 
 type Props = {
   item: RankedStrategy;
@@ -41,7 +42,7 @@ export function DashboardPage({ item, strategy, isModified, targetAmount, scenar
 
   return (
     <main className="content dashboard-page">
-      <div className="results-heading"><div><p className="section-label">DETAILED RESILIENCE ANALYSIS</p><h1>{strategy.name}</h1><p className="page-subtitle">{strategy.explanation}</p></div><button type="button" className="secondary" onClick={onBack}>Back to strategies</button></div>
+      <div className="results-heading"><div><p className="section-label">DETAILED RESILIENCE ANALYSIS</p><h1>{strategy.name}</h1><p className="page-subtitle">{strategy.explanation}</p></div><BackButton label="Back to strategies" onClick={onBack} /></div>
       <ScenarioSelector scenarios={scenarios} selectedId={scenarioId} loading={loading} onChange={onScenarioChange} />
       <div className={isDemo ? "data-badge demo" : "data-badge live"}><i />{isDemo ? "Demo data" : "Scenario simulation"}</div>
       {error && <div className="notice" role="alert"><span>{error}</span><button type="button" className="text-action" onClick={onRetry}>Retry scenario</button></div>}

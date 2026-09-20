@@ -1,3 +1,5 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -5,11 +7,21 @@ from app.api.routes.simulations import router as simulations_router
 from app.api.routes.scenarios import router as scenarios_router
 from app.api.routes.strategies import router as strategies_router
 from app.api.routes.affordability import router as affordability_router
+from app.api.routes.auth import router as auth_router
+from app.api.routes.goals import router as goals_router
+from app.services.auth_store import initialize_database
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    initialize_database()
+    yield
 
 app = FastAPI(
     title="FinnStrat API",
     version="0.1.0",
     description="Financial strategy generation and resilience simulation API.",
+    lifespan=lifespan,
 )
 
 app.add_middleware(
@@ -24,6 +36,8 @@ app.include_router(simulations_router)
 app.include_router(scenarios_router)
 app.include_router(strategies_router)
 app.include_router(affordability_router)
+app.include_router(auth_router)
+app.include_router(goals_router)
 
 
 @app.get("/api/v1/health")

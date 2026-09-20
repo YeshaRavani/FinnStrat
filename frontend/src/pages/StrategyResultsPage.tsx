@@ -2,6 +2,7 @@ import type { AffordabilityResult, RankedStrategy, RankingPreference } from "../
 import { PreferenceSelector } from "../components/PreferenceSelector";
 import { StrategyCard } from "../components/StrategyCard";
 import { StrategyComparison } from "../components/StrategyComparison";
+import { BackButton } from "../components/BackButton";
 import { finalNormalNetWorth } from "../utils/loanMath";
 
 type Props = {
@@ -19,10 +20,11 @@ type Props = {
   onPreferenceChange: (preference: RankingPreference) => void;
   onRetry: () => void;
   onEdit: () => void;
+  onBack: () => void;
   affordability: AffordabilityResult | null;
 };
 
-export function StrategyResultsPage({ strategies, goalName, preference, selectedId, comparedIds, loading, isDemo, error, affordability, onSelect, onOpen, onCompare, onPreferenceChange, onRetry, onEdit }: Props) {
+export function StrategyResultsPage({ strategies, goalName, preference, selectedId, comparedIds, loading, isDemo, error, affordability, onSelect, onOpen, onCompare, onPreferenceChange, onRetry, onEdit, onBack }: Props) {
   const selected = strategies.find(item => item.strategy.id === selectedId) ?? null;
   const compared = strategies.filter(item => comparedIds.includes(item.strategy.id));
   const bestNormal = [...strategies].sort((a, b) => finalNormalNetWorth(b) - finalNormalNetWorth(a))[0];
@@ -32,7 +34,7 @@ export function StrategyResultsPage({ strategies, goalName, preference, selected
 
   return (
     <main className="content results-page">
-      <div className="results-heading"><div><p className="section-label">STRATEGY RESULTS</p><h1>Plans for {goalName}</h1></div><button type="button" className="secondary" onClick={onEdit}>Edit inputs</button></div>
+      <div className="results-heading"><div><p className="section-label">STRATEGY RESULTS</p><h1>Plans for {goalName}</h1></div><div className="page-actions"><BackButton label="Back to planner" onClick={onBack} /><button type="button" className="secondary" onClick={onEdit}>Edit inputs</button></div></div>
       <div className="results-toolbar"><PreferenceSelector value={preference} onChange={onPreferenceChange} /><span className={isDemo ? "data-badge demo" : "data-badge live"}><i />{isDemo ? "Demo data" : "Live API results"}</span></div>
       {error && <div className="notice" role="alert"><span>{error}</span><button type="button" className="text-action" onClick={onRetry}>Retry</button></div>}
       {loading ? <div className="strategy-grid" aria-label="Generating strategies">{[1, 2, 3].map(number => <div className="strategy-skeleton" key={number} />)}</div> : strategies.length === 0 ? (

@@ -16,7 +16,6 @@ export function FinancialProfileForm({ profile, errors, onChange }: Props) {
     <section className="form-section" aria-labelledby="profile-title">
       <div className="panel-heading">
         <div><p className="section-label">01 / FINANCIAL CONTEXT</p><h2 id="profile-title">Your starting point</h2></div>
-        <span className="step">STEP 1 OF 2</span>
       </div>
       <div className="form-grid">
         {currency("income", "Monthly income", "Your regular take-home income.")}

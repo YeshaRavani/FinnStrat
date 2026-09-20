@@ -15,7 +15,6 @@ export function GoalForm({ goal, errors, onChange }: Props) {
     <section className="form-section" aria-labelledby="goal-title">
       <div className="panel-heading">
         <div><p className="section-label">02 / GOAL DEFINITION</p><h2 id="goal-title">What are you planning?</h2></div>
-        <span className="step">STEP 2 OF 2</span>
       </div>
       <div className="form-grid">
         <Field label="Goal name" value={goal.name} onChange={value => onChange("name", value)} required help="Use any name that makes the goal clear." error={errors.name} type="text" />

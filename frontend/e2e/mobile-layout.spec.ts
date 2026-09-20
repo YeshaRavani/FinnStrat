@@ -1,8 +1,31 @@
 import { expect, test } from "@playwright/test";
+import type { Page } from "@playwright/test";
 import { mockScenarios, mockStrategies } from "../src/api/mockStrategies";
+
+const testSession = {
+  user: { id: 1, username: "e2e_user", created_at: "2026-01-01T00:00:00Z" },
+  profile: {
+    monthly_income: 250000,
+    monthly_expenses: 100000,
+    cash_savings: 3000000,
+    investments: 1500000,
+    existing_debt: 0,
+    monthly_debt_payment: 0,
+    existing_debt_annual_interest_rate: 0,
+    emergency_reserve_months: 6,
+    risk_tolerance: "medium",
+  },
+  goals: [],
+};
+
+async function seedSession(page: Page) {
+  await page.addInitScript(() => localStorage.setItem("finnstrat.access_token", "e2e-token"));
+  await page.route("**/api/v1/auth/me", route => route.fulfill({ json: testSession }));
+}
 
 test("planning, results, and dashboard fit a narrow mobile viewport", async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 780 });
+  await seedSession(page);
   await page.route("**/api/v1/scenarios", route => route.fulfill({ json: mockScenarios }));
   await page.route("**/api/v1/strategies/generate", route => route.fulfill({ json: mockStrategies }));
   await page.route("**/api/v1/simulations", route => route.fulfill({ json: mockStrategies[0].normal_simulation }));
@@ -11,7 +34,8 @@ test("planning, results, and dashboard fit a narrow mobile viewport", async ({ p
   const fitsViewport = () => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth);
   expect(await fitsViewport()).toBe(true);
 
-  await page.getByRole("button", { name: "Continue to goal" }).click();
+  await page.getByRole("button", { name: "Plan a new goal" }).click();
+  await expect(page.getByRole("heading", { name: "What are you planning?" })).toBeVisible();
   expect(await fitsViewport()).toBe(true);
   await page.getByRole("button", { name: "Generate strategies" }).click();
   await expect(page.getByRole("heading", { name: "Plans for Buy a car" })).toBeVisible();
@@ -25,8 +49,10 @@ test("planning, results, and dashboard fit a narrow mobile viewport", async ({ p
 });
 
 test("live UI generates strategies and runs a selected backend scenario", async ({ page }) => {
+  await seedSession(page);
   await page.goto("http://localhost:5173");
-  await page.getByRole("button", { name: "Continue to goal" }).click();
+  await page.getByRole("button", { name: "Plan a new goal" }).click();
+  await expect(page.getByRole("heading", { name: "What are you planning?" })).toBeVisible();
   await page.getByRole("button", { name: "Generate strategies" }).click();
 
   await expect(page.getByText("Live API results")).toBeVisible({ timeout: 30000 });

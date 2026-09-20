@@ -17,6 +17,8 @@ The project dataset is available in two forms under `data/`:
 
 The backend opens the bundled SQLite database read-only. Its `stress_scenarios` rows provide the live API scenario catalog and the same scenario definitions used during strategy generation. Set `FINNSTRAT_DB_PATH` to use another compatible SQLite file. The SQL dump is not loaded on every server start; it is the portable export of the dataset, while SQLite is the efficient runtime format. The two checked-in files currently contain identical rows.
 
+Prototype accounts use a separate writable SQLite database at `data/finnstrat_app.sqlite` (ignored by Git), so user records never modify the checked-in dataset. Signup uses a username and password only—there is no email verification or external account integration. Passwords are stored as salted PBKDF2-SHA256 hashes and the frontend keeps an expiring opaque session token in browser storage. Each account owns its saved financial profile and goal history.
+
 For investment growth, the backend estimates a default annual return from month-to-month changes in baseline `full_cash` investment series in `monthly_simulations`, grouped by dataset risk band and mapped to the form's low/medium/high choices. An explicit `expected_annual_investment_return` in an API profile overrides this calibration. These monthly rows are synthetic model outputs, not observed market prices or verified real-world historical returns; the calibration reproduces the dataset's assumptions and should not be interpreted as a forecast.
 
 Existing debt is represented as one aggregate balance with a blended annual interest rate and monthly payment. The simulator accrues monthly interest, applies the payment up to the amount due, stops charging the installment once the modeled balance is paid, and reports the remaining balance in net worth. This is an estimate for multiple debts; it does not model separate loan schedules, fees, changing rates, or missed payments. New financed purchases use a fixed base EMI recalculated over the remaining contractual term when a scenario changes the interest rate; the first installment is paid one month after purchase.
@@ -85,6 +87,15 @@ Returns the reusable stress scenario catalog used by the strategy engine:
 Accepts a profile, goal, selected strategy, scenario from the catalog, and `max_months`; returns monthly cash, investment, debt, net-worth, and purchase-event results.
 
 Validation errors use FastAPI's standard `422` response with a `detail` field. The frontend displays that detail and distinguishes it from an unavailable backend.
+
+### Prototype account endpoints
+
+- `POST /api/v1/auth/signup` creates a username/password account and stores the baseline financial profile.
+- `POST /api/v1/auth/login` returns a session token.
+- `GET /api/v1/auth/me` restores the logged-in user's profile and saved goals.
+- `PUT /api/v1/auth/profile` updates the profile used for future goals.
+- `POST /api/v1/goals` saves or updates a goal for the authenticated user.
+- `POST /api/v1/auth/logout` revokes the current session token.
 
 ## Local development
 

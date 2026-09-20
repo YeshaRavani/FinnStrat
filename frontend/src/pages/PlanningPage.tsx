@@ -4,6 +4,8 @@ import { FinancialProfileForm as ProfileForm } from "../components/FinancialProf
 import { GoalForm } from "../components/GoalForm";
 import { FinanceSketch } from "../components/FinanceSketch";
 import { LensPanel } from "../components/LensPanel";
+import { BackButton } from "../components/BackButton";
+import { validateProfile } from "../utils/profileValidation";
 
 type Step = "profile" | "goal";
 type Props = {
@@ -13,28 +15,17 @@ type Props = {
   onProfileChange: (key: keyof FinancialProfileForm, value: string) => void;
   onGoalChange: (key: keyof GoalFormData, value: string) => void;
   onGenerate: () => void;
+  startAtGoal?: boolean;
+  onBack: () => void;
 };
 
-export function PlanningPage({ profile, goal, loading, onProfileChange, onGoalChange, onGenerate }: Props) {
-  const [step, setStep] = useState<Step>("profile");
+export function PlanningPage({ profile, goal, loading, onProfileChange, onGoalChange, onGenerate, startAtGoal = false, onBack }: Props) {
+  const [step, setStep] = useState<Step>(startAtGoal ? "goal" : "profile");
   const [profileErrors, setProfileErrors] = useState<Partial<Record<keyof FinancialProfileForm, string>>>({});
   const [goalErrors, setGoalErrors] = useState<Partial<Record<keyof GoalFormData, string>>>({});
 
   const continueToGoal = () => {
-    const errors: typeof profileErrors = {};
-    const income = Number(profile.income);
-    const expenses = Number(profile.expenses);
-    for (const [key, value] of Object.entries(profile)) {
-      if (key === "riskTolerance" || key === "emergencyMonths") continue;
-      if (value.trim() === "" || !Number.isFinite(Number(value)) || Number(value) < 0) errors[key as keyof FinancialProfileForm] = "Enter a valid non-negative amount.";
-    }
-    if (income <= 0) errors.income = "Monthly income must be greater than zero.";
-    if (expenses > income) errors.expenses = "Expenses cannot exceed monthly income.";
-    if (Number(profile.monthlyDebtPayment) > income) errors.monthlyDebtPayment = "Debt payments cannot exceed monthly income.";
-    if (Number(profile.existingDebt) > 0) {
-      const debtRate = Number(profile.existingDebtAnnualInterestRate);
-      if (!Number.isFinite(debtRate) || debtRate < 0 || debtRate > 100) errors.existingDebtAnnualInterestRate = "Use an annual rate between 0 and 100 percent.";
-    }
+    const errors = validateProfile(profile);
     setProfileErrors(errors);
     if (Object.keys(errors).length === 0) setStep("goal");
   };
@@ -59,6 +50,7 @@ export function PlanningPage({ profile, goal, loading, onProfileChange, onGoalCh
 
   return (
     <>
+      <div className="page-back"><BackButton label="Back to home" onClick={onBack} /></div>
       <section className="hero">
         <div><p className="kicker">FINANCIAL RESILIENCE ENGINE</p><h1>Make the big move.<br /><em>Keep your options open.</em></h1><p className="hero-copy">Compare paths to your goal and see which plans can withstand the unexpected.</p></div>
         <FinanceSketch />
@@ -69,7 +61,6 @@ export function PlanningPage({ profile, goal, loading, onProfileChange, onGoalCh
             ? <ProfileForm profile={profile} errors={profileErrors} onChange={onProfileChange} />
             : <GoalForm goal={goal} errors={goalErrors} onChange={onGoalChange} />}
           <div className="form-actions">
-            {step === "goal" && <button type="button" className="secondary" onClick={() => setStep("profile")}>Back to financial context</button>}
             <button className="primary" type="submit" disabled={loading}>
               {loading ? "Generating strategies…" : step === "profile" ? "Continue to goal" : "Generate strategies"}
             </button>
