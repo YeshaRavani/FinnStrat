@@ -1,0 +1,119 @@
+{"kind":"deck","id":"pr/m9hopt","name":"Deck"}
+{"kind":"layout","layoutId":"0ad50a3e-6ae1-48f5-a1b7-5534e2405980","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"215920a2-1cd3-4814-a4ed-01b3a71c1e77","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/eym29a","slide":1,"title":"FINNSTRAT","textShapes":4}
+{"kind":"textbox","id":"sh/bi1wv69o","slide":1,"text":"FINNSTRAT","textPreview":"FINNSTRAT","textChars":9,"textLines":1,"bbox":[72,70,300,30]}
+{"kind":"textbox","id":"sh/wjadobq9","slide":1,"text":"Plan for the best.\nPrepare for the worst.","textPreview":"Plan for the best. | Prepare for the worst.","textChars":41,"textLines":2,"bbox":[72,180,780,180]}
+{"kind":"textbox","id":"sh/xkjexgru","slide":1,"text":"A wealth tracker and planner built around the goals people care about and the shocks they cannot predict.","textPreview":"A wealth tracker and planner built around the goals people care about and the shocks they cannot predict.","textChars":105,"textLines":1,"bbox":[76,405,590,70]}
+{"kind":"shape","id":"sh/ylsvql8f","slide":1,"bbox":[890,160,200,200]}
+{"kind":"shape","id":"sh/jm1wzq9k","slide":1,"bbox":[1090,245,85,115]}
+{"kind":"shape","id":"sh/knadsvq5","slide":1,"bbox":[1175,205,35,40]}
+{"kind":"textbox","id":"sh/l83e10rq","slide":1,"text":"WEALTH\nTHAT HOLDS\nUP","textPreview":"WEALTH | THAT HOLDS | UP","textChars":20,"textLines":3,"bbox":[920,410,250,100]}
+{"kind":"notes","id":"nt/eym29a","slide":1,"text":"FinnStrat pitch deck. Tagline and product framing supplied by the user."}
+{"kind":"slide","id":"sl/h586so","slide":2,"title":"FINNSTRAT","textShapes":12}
+{"kind":"textbox","id":"sh/fq10fqls","slide":2,"text":"FINNSTRAT","textPreview":"FINNSTRAT","textChars":9,"textLines":1,"bbox":[64,38,300,24]}
+{"kind":"textbox","id":"sh/gruh8vmd","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1180,38,40,24]}
+{"kind":"textbox","id":"sh/hs3ih03y","slide":2,"text":"The financial planning gap","textPreview":"The financial planning gap","textChars":26,"textLines":1,"bbox":[64,82,1120,64]}
+{"kind":"textbox","id":"sh/61sz2l4b","slide":2,"text":"People can access more financial products than ever. Many still lack a clear plan for what happens when life changes.","textPreview":"People can access more financial products than ever. Many still lack a clear plan for what happens when life changes.","textChars":117,"textLines":1,"bbox":[64,158,610,70]}
+{"kind":"textbox","id":"sh/7210b6lg","slide":2,"text":"27.18%","textPreview":"27.18%","textChars":6,"textLines":1,"bbox":[64,295,430,110]}
+{"kind":"textbox","id":"sh/s3ah4bm1","slide":2,"text":"of respondents crossed the minimum financial-literacy threshold in the 2019 NCFE survey","textPreview":"of respondents crossed the minimum financial-literacy threshold in the 2019 NCFE survey","textChars":87,"textLines":1,"bbox":[72,417,430,60]}
+{"kind":"textbox","id":"sh/t4jidg3m","slide":2,"text":"Financial literacy covers knowledge, attitude, and behaviour—not just investing.","textPreview":"Financial literacy covers knowledge, attitude, and behaviour—not just investing.","textChars":80,"textLines":1,"bbox":[64,545,520,55]}
+{"kind":"textbox","id":"sh/ix8zy14z","slide":2,"text":"INCOME","textPreview":"INCOME","textChars":6,"textLines":1,"bbox":[760,190,140,34]}
+{"kind":"textbox","id":"sh/jyh0765k","slide":2,"text":"SPENDING","textPreview":"SPENDING","textChars":8,"textLines":1,"bbox":[950,270,140,34]}
+{"kind":"textbox","id":"sh/jmhkjets","slide":2,"text":"DREAMS","textPreview":"DREAMS","textChars":6,"textLines":1,"bbox":[760,430,140,34]}
+{"kind":"textbox","id":"sh/il8jq9c7","slide":2,"text":"SHOCKS","textPreview":"SHOCKS","textChars":6,"textLines":1,"bbox":[950,510,140,34]}
+{"kind":"shape","id":"sh/5oz2loby","slide":2,"bbox":[900,207,50,80]}
+{"kind":"shape","id":"sh/4nq1sjud","slide":2,"bbox":[830,304,190,143]}
+{"kind":"shape","id":"sh/rq1knyt4","slide":2,"bbox":[900,447,50,80]}
+{"kind":"textbox","id":"sh/6psjutcj","slide":2,"text":"The missing layer is\nresilient decision-making.","textPreview":"The missing layer is | resilient decision-making.","textChars":47,"textLines":2,"bbox":[742,585,410,60]}
+{"kind":"notes","id":"nt/h586so","slide":2,"text":"Source: National Centre for Financial Education, National Strategy for Financial Education / 2019 survey. The 27.18% figure measures the minimum threshold across financial knowledge, attitude, and behaviour. Source: https://systemhealth.rbi.org.in/Scripts/PublicationReportDetails.aspx_UrlPage%3D%26ID%3D1156%281%29.html"}
+{"kind":"slide","id":"sl/6uxe3p","slide":3,"title":"FINNSTRAT","textShapes":18}
+{"kind":"textbox","id":"sh/psfq1wzu","slide":3,"text":"FINNSTRAT","textPreview":"FINNSTRAT","textChars":9,"textLines":1,"bbox":[64,38,300,24]}
+{"kind":"textbox","id":"sh/2porqh03","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,38,40,24]}
+{"kind":"textbox","id":"sh/3qx8zmho","slide":3,"text":"One place for spending, goals, and decisions","textPreview":"One place for spending, goals, and decisions","textChars":44,"textLines":1,"bbox":[64,82,1120,64]}
+{"kind":"textbox","id":"sh/cv69wbi5","slide":3,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[70,220,60,42]}
+{"kind":"textbox","id":"sh/dwfa5gzq","slide":3,"text":"TRACK","textPreview":"TRACK","textChars":5,"textLines":1,"bbox":[70,300,240,40]}
+{"kind":"textbox","id":"sh/qtoru10z","slide":3,"text":"See where money goes","textPreview":"See where money goes","textChars":20,"textLines":1,"bbox":[70,350,220,55]}
+{"kind":"shape","id":"sh/buxs36hk","slide":3,"bbox":[280,318,50,0]}
+{"kind":"textbox","id":"sh/0jq90bih","slide":3,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[355,220,60,42]}
+{"kind":"textbox","id":"sh/lkza9gzm","slide":3,"text":"PLAN","textPreview":"PLAN","textChars":4,"textLines":1,"bbox":[355,300,240,40]}
+{"kind":"textbox","id":"sh/pg32pwn2","slide":3,"text":"Turn dreams into timelines","textPreview":"Turn dreams into timelines","textChars":26,"textLines":1,"bbox":[355,350,220,55]}
+{"kind":"shape","id":"sh/4fulwrmh","slide":3,"bbox":[565,318,50,0]}
+{"kind":"textbox","id":"sh/3elknm5w","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[640,220,60,42]}
+{"kind":"textbox","id":"sh/2dc3u14r","slide":3,"text":"STRESS-TEST","textPreview":"STRESS-TEST","textChars":11,"textLines":1,"bbox":[640,300,240,40]}
+{"kind":"textbox","id":"sh/d432tgne","slide":3,"text":"Find the breaking point","textPreview":"Find the breaking point","textChars":23,"textLines":1,"bbox":[640,350,220,55]}
+{"kind":"shape","id":"sh/c3ul0bmt","slide":3,"bbox":[850,318,50,0]}
+{"kind":"textbox","id":"sh/r2lkr658","slide":3,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[925,220,60,42]}
+{"kind":"textbox","id":"sh/q1c3y14n","slide":3,"text":"ADJUST","textPreview":"ADJUST","textChars":6,"textLines":1,"bbox":[925,300,240,40]}
+{"kind":"textbox","id":"sh/t8j2hcnu","slide":3,"text":"Improve the strategy","textPreview":"Improve the strategy","textChars":20,"textLines":1,"bbox":[925,350,220,55]}
+{"kind":"textbox","id":"sh/s7a1o769","slide":3,"text":"Example goal","textPreview":"Example goal","textChars":12,"textLines":1,"bbox":[70,515,180,28]}
+{"kind":"textbox","id":"sh/krel4re5","slide":3,"text":"Buy a car • ₹18 lakh","textPreview":"Buy a car • ₹18 lakh","textChars":20,"textLines":1,"bbox":[70,552,380,45]}
+{"kind":"textbox","id":"sh/lsn2dcvq","slide":3,"text":"The app compares the strongest strategies instead of giving one generic answer.","textPreview":"The app compares the strongest strategies instead of giving one generic answer.","textChars":79,"textLines":1,"bbox":[640,525,500,65]}
+{"kind":"notes","id":"nt/6uxe3p","slide":3,"text":""}
+{"kind":"slide","id":"sl/c16yoz","slide":4,"title":"FINNSTRAT","textShapes":11}
+{"kind":"textbox","id":"sh/mtkj6d0f","slide":4,"text":"FINNSTRAT","textPreview":"FINNSTRAT","textChars":9,"textLines":1,"bbox":[64,38,300,24]}
+{"kind":"textbox","id":"sh/9wvi18z6","slide":4,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,38,40,24]}
+{"kind":"textbox","id":"sh/8vm183il","slide":4,"text":"The user has a dream and a monthly reality","textPreview":"The user has a dream and a monthly reality","textChars":42,"textLines":1,"bbox":[64,82,1120,64]}
+{"kind":"textbox","id":"sh/vydk3ihw","slide":4,"text":"Young working Indians and families who earn, save, spend, and invest—but do not have a personal financial planner.","textPreview":"Young working Indians and families who earn, save, spend, and invest—but do not have a personal financial planner.","textChars":114,"textLines":1,"bbox":[64,160,760,65]}
+{"kind":"textbox","id":"sh/ax4jad0b","slide":4,"text":"FIRST JOB","textPreview":"FIRST JOB","textChars":9,"textLines":1,"bbox":[70,295,150,34]}
+{"kind":"textbox","id":"sh/x0v25sz2","slide":4,"text":"NEW FAMILY","textPreview":"NEW FAMILY","textChars":10,"textLines":1,"bbox":[240,295,175,34]}
+{"kind":"textbox","id":"sh/wzm1cnih","slide":4,"text":"SIDE HUSTLE","textPreview":"SIDE HUSTLE","textChars":11,"textLines":1,"bbox":[435,295,175,34]}
+{"kind":"textbox","id":"sh/jmxk72h8","slide":4,"text":"BIG PURCHASE","textPreview":"BIG PURCHASE","textChars":12,"textLines":1,"bbox":[630,295,180,34]}
+{"kind":"textbox","id":"sh/ilojex0n","slide":4,"text":"“I earn reasonably well.\nI just don’t know if I can\nsafely afford my next move.”","textPreview":"“I earn reasonably well. | I just don’t know if I can | safely afford my next move.”","textChars":80,"textLines":3,"bbox":[70,420,500,155]}
+{"kind":"textbox","id":"sh/87ad4ra1","slide":4,"text":"FINNSTRAT FIT","textPreview":"FINNSTRAT FIT","textChars":13,"textLines":1,"bbox":[790,400,220,28]}
+{"kind":"textbox","id":"sh/9sjedwbm","slide":4,"text":"Goal-driven\nDigital-first\nWants clarity\nNeeds flexibility","textPreview":"Goal-driven | Digital-first | Wants clarity | Needs flexibility","textChars":57,"textLines":4,"bbox":[790,440,330,135]}
+{"kind":"notes","id":"nt/c16yoz","slide":4,"text":""}
+{"kind":"slide","id":"sl/mmxnzm","slide":5,"title":"FINNSTRAT","textShapes":11}
+{"kind":"textbox","id":"sh/14zqhcvi","slide":5,"text":"FINNSTRAT","textPreview":"FINNSTRAT","textChars":9,"textLines":1,"bbox":[64,38,300,24]}
+{"kind":"textbox","id":"sh/e18rmhwr","slide":5,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,38,40,24]}
+{"kind":"textbox","id":"sh/z2h8fmdc","slide":5,"text":"The difference is resilience","textPreview":"The difference is resilience","textChars":28,"textLines":1,"bbox":[64,82,1120,64]}
+{"kind":"textbox","id":"sh/ora9srut","slide":5,"text":"Most tools show a projection. FinnStrat shows the consequences of a decision under pressure.","textPreview":"Most tools show a projection. FinnStrat shows the consequences of a decision under pressure.","textChars":92,"textLines":1,"bbox":[64,155,780,60]}
+{"kind":"textbox","id":"sh/9sjqlwve","slide":5,"text":"Highest return","textPreview":"Highest return","textChars":14,"textLines":1,"bbox":[100,315,260,42]}
+{"kind":"textbox","id":"sh/m5srqhc3","slide":5,"text":"Highest survivability","textPreview":"Highest survivability","textChars":21,"textLines":1,"bbox":[850,315,330,42]}
+{"kind":"shape","id":"sh/nq18jmd8","slide":5,"bbox":[390,337,430,0]}
+{"kind":"textbox","id":"sh/wva9wbu5","slide":5,"text":"FinnStrat","textPreview":"FinnStrat","textChars":9,"textLines":1,"bbox":[540,280,170,115]}
+{"kind":"textbox","id":"sh/xw3apwvq","slide":5,"text":"The strategy a person can sustain when income drops, markets fall, or expenses spike.","textPreview":"The strategy a person can sustain when income drops, markets fall, or expenses spike.","textChars":85,"textLines":1,"bbox":[220,490,820,70]}
+{"kind":"textbox","id":"sh/14nu1wjq","slide":5,"text":"GOAL-BASED","textPreview":"GOAL-BASED","textChars":10,"textLines":1,"bbox":[330,620,170,34]}
+{"kind":"textbox","id":"sh/g3et8ri5","slide":5,"text":"STRESS-TESTED","textPreview":"STRESS-TESTED","textChars":13,"textLines":1,"bbox":[550,620,200,34]}
+{"kind":"textbox","id":"sh/f25czm1k","slide":5,"text":"EXPLAINABLE","textPreview":"EXPLAINABLE","textChars":11,"textLines":1,"bbox":[800,620,170,34]}
+{"kind":"notes","id":"nt/mmxnzm","slide":5,"text":""}
+{"kind":"slide","id":"sl/bj1fxu","slide":6,"title":"FINNSTRAT","textShapes":16}
+{"kind":"textbox","id":"sh/qlojq54j","slide":6,"text":"FINNSTRAT","textPreview":"FINNSTRAT","textChars":9,"textLines":1,"bbox":[64,38,300,24]}
+{"kind":"textbox","id":"sh/d8filknu","slide":6,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,38,40,24]}
+{"kind":"textbox","id":"sh/s761sfmp","slide":6,"text":"When a strategy fails, the app explains what to change","textPreview":"When a strategy fails, the app explains what to change","textChars":54,"textLines":1,"bbox":[64,82,1120,64]}
+{"kind":"textbox","id":"sh/3id0fa5s","slide":6,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[70,225,60,40]}
+{"kind":"textbox","id":"sh/ih4zm547","slide":6,"text":"BREAKING POINT","textPreview":"BREAKING POINT","textChars":14,"textLines":1,"bbox":[70,295,235,35]}
+{"kind":"textbox","id":"sh/5kfih0ny","slide":6,"text":"Emergency reserve breached","textPreview":"Emergency reserve breached","textChars":26,"textLines":1,"bbox":[70,345,220,75]}
+{"kind":"shape","id":"sh/4j6hofmd","slide":6,"bbox":[290,245,50,0]}
+{"kind":"textbox","id":"sh/neh0ru5c","slide":6,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[360,225,60,40]}
+{"kind":"textbox","id":"sh/2d8jyp4r","slide":6,"text":"DIAGNOSIS","textPreview":"DIAGNOSIS","textChars":9,"textLines":1,"bbox":[360,295,235,35]}
+{"kind":"textbox","id":"sh/4v658jul","slide":6,"text":"EMI is too high for income","textPreview":"EMI is too high for income","textChars":26,"textLines":1,"bbox":[360,345,220,75]}
+{"kind":"shape","id":"sh/pwfm1ov6","slide":6,"bbox":[580,245,50,0]}
+{"kind":"textbox","id":"sh/2t4n6tcf","slide":6,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[650,225,60,40]}
+{"kind":"textbox","id":"sh/3ux4zyd0","slide":6,"text":"RECOVERY","textPreview":"RECOVERY","textChars":8,"textLines":1,"bbox":[650,295,235,35]}
+{"kind":"textbox","id":"sh/grm54jup","slide":6,"text":"Reduce loan or delay purchase","textPreview":"Reduce loan or delay purchase","textChars":29,"textLines":1,"bbox":[650,345,220,75]}
+{"kind":"shape","id":"sh/hsvmxovu","slide":6,"bbox":[870,245,50,0]}
+{"kind":"textbox","id":"sh/up4n29cj","slide":6,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[940,225,60,40]}
+{"kind":"textbox","id":"sh/fqd4ved4","slide":6,"text":"RERUN","textPreview":"RERUN","textChars":5,"textLines":1,"bbox":[940,295,235,35]}
+{"kind":"textbox","id":"sh/8nm50zud","slide":6,"text":"Compare the safer outcome","textPreview":"Compare the safer outcome","textChars":25,"textLines":1,"bbox":[940,345,220,75]}
+{"kind":"textbox","id":"sh/tovmt4vy","slide":6,"text":"A failed plan is not the end of the journey. It is a signal to redesign the plan.","textPreview":"A failed plan is not the end of the journey. It is a signal to redesign the plan.","textChars":81,"textLines":1,"bbox":[160,545,960,70]}
+{"kind":"notes","id":"nt/bj1fxu","slide":6,"text":""}
+{"kind":"slide","id":"sl/wek3yv","slide":7,"title":"FINNSTRAT","textShapes":14}
+{"kind":"textbox","id":"sh/lkzmtcbi","slide":7,"text":"FINNSTRAT","textPreview":"FINNSTRAT","textChars":9,"textLines":1,"bbox":[64,38,300,24]}
+{"kind":"textbox","id":"sh/yh83yhsr","slide":7,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,38,40,24]}
+{"kind":"textbox","id":"sh/zih4r2tc","slide":7,"text":"A simple path from trust to paid value","textPreview":"A simple path from trust to paid value","textChars":38,"textLines":1,"bbox":[64,82,1120,64]}
+{"kind":"textbox","id":"sh/cfqlw7al","slide":7,"text":"FREE CORE","textPreview":"FREE CORE","textChars":9,"textLines":1,"bbox":[80,190,250,40]}
+{"kind":"textbox","id":"sh/xgzmpcb6","slide":7,"text":"Build the habit","textPreview":"Build the habit","textChars":15,"textLines":1,"bbox":[80,250,250,38]}
+{"kind":"textbox","id":"sh/ado3uxsv","slide":7,"text":"Track spending\nSet goals\nCompare basic plans","textPreview":"Track spending | Set goals | Compare basic plans","textChars":44,"textLines":3,"bbox":[80,315,270,115]}
+{"kind":"shape","id":"sh/beh4n2t0","slide":7,"bbox":[370,290,100,0]}
+{"kind":"textbox","id":"sh/ob6lsnap","slide":7,"text":"₹19 / WEEK","textPreview":"₹19 / WEEK","textChars":10,"textLines":1,"bbox":[500,190,250,50]}
+{"kind":"textbox","id":"sh/pcfmlsba","slide":7,"text":"Premium planning","textPreview":"Premium planning","textChars":16,"textLines":1,"bbox":[500,250,280,38]}
+{"kind":"textbox","id":"sh/tsfmpkvu","slide":7,"text":"Advanced stress tests\nFamily planning\nAI explanations","textPreview":"Advanced stress tests | Family planning | AI explanations","textChars":53,"textLines":3,"bbox":[500,315,280,115]}
+{"kind":"shape","id":"sh/sr6lwfe9","slide":7,"bbox":[820,290,100,0]}
+{"kind":"textbox","id":"sh/76x4nado","slide":7,"text":"TRUSTED PARTNERS","textPreview":"TRUSTED PARTNERS","textChars":16,"textLines":1,"bbox":[950,190,250,40]}
+{"kind":"textbox","id":"sh/6543upw3","slide":7,"text":"Transparent value","textPreview":"Transparent value","textChars":17,"textLines":1,"bbox":[950,250,250,38]}
+{"kind":"textbox","id":"sh/54vmlkvy","slide":7,"text":"Financial wellness\nCarefully selected products\nVisible savings protected","textPreview":"Financial wellness | Carefully selected products | Visible savings protected","textChars":72,"textLines":3,"bbox":[950,315,260,115]}
+{"kind":"shape","id":"sh/k3mlsfed","slide":7,"bbox":[80,500,1120,0]}
+{"kind":"textbox","id":"sh/j2d4jads","slide":7,"text":"MVP","textPreview":"MVP","textChars":3,"textLines":1,"bbox":[80,535,90,32]}
+{"kind":"textbox","id":"sh/i143q5w7","slide":7,"text":"Profile → Goal → Strategy shortlist → Stress test → Breaking point → Recovery plan","textPreview":"Profile → Goal → Strategy shortlist → Stress test → Breaking point → Recovery plan","textChars":82,"textLines":1,"bbox":[200,530,980,40]}
+{"kind":"notes","id":"nt/wek3yv","slide":7,"text":"Revenue model and MVP framing supplied by the user. ₹19/week is a proposed price, not a validated market price."}

@@ -6,6 +6,6 @@ dist/
 playwright-report/
 test-results/
 *.tsbuildinfo
-data/finnstrat_app.sqlite
 .env
 .DS_Store
+/.codex-build/node_modules

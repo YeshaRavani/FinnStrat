@@ -52,7 +52,7 @@ export function PlanningPage({ profile, goal, loading, onProfileChange, onGoalCh
     <>
       <div className="page-back"><BackButton label="Back to home" onClick={onBack} /></div>
       <section className="hero">
-        <div><p className="kicker">FINANCIAL RESILIENCE ENGINE</p><h1>Make the big move.<br /><em>Keep your options open.</em></h1><p className="hero-copy">Compare paths to your goal and see which plans can withstand the unexpected.</p></div>
+        <div><p className="kicker">FINANCIAL RESILIENCE ENGINE</p><h1>Make the big move.<br /><em>Keep your options open.</em></h1><p className="hero-copy">Compare paths to your goal and see which plans can withstand the unexpected.</p><p className="hero-tagline">“The highest return is not always the strongest plan.”</p></div>
         <FinanceSketch />
       </section>
       <div className="workspace">
@@ -66,7 +66,7 @@ export function PlanningPage({ profile, goal, loading, onProfileChange, onGoalCh
             </button>
           </div>
         </form>
-        <LensPanel />
+        <LensPanel profile={profile} goal={goal} />
       </div>
     </>
   );
