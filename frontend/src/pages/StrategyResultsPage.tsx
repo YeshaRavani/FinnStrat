@@ -38,6 +38,7 @@ export function StrategyResultsPage({ strategies, goalName, preference, selected
       {loading ? <div className="strategy-grid" aria-label="Generating strategies">{[1, 2, 3].map(number => <div className="strategy-skeleton" key={number} />)}</div> : strategies.length === 0 ? (
         <AffordabilityNotice result={affordability} onEdit={onEdit} />
       ) : <>
+        {strategies[0] && (strategies[0].stress_simulation.breaking_point_month !== null || !strategies[0].stress_simulation.goal_acquired) && <div className="recommendation-warning" role="note"><strong>Conditional recommendation</strong><span>Recommended under normal assumptions, but vulnerable under combined stress. Review the breach month and recovery before choosing this plan.</span></div>}
         <div className="insight-strip" aria-label="Strategy highlights">
           <div><span>TOP RECOMMENDATION</span><b>{strategies[0]?.strategy.name ?? "—"}</b></div>
           <div><span>BEST NORMAL CASE</span><b>{bestNormal?.strategy.name ?? "—"}</b></div>

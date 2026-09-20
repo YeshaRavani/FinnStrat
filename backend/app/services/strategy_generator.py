@@ -139,6 +139,31 @@ def _strategy_configuration(strategy: Strategy) -> tuple:
     return tuple(sorted(values.items()))
 
 
+def _visible_strategy_signature(item: RankedStrategy) -> tuple:
+    """Identify cards that would look identical to a user.
+
+    Some candidate dimensions, such as a purchase delay that has no effect on
+    the resulting projection, used to create repeated cards with the same
+    name and displayed numbers. Keep only one representative of those cards.
+    """
+    normal_final = item.normal_simulation.monthly_results[-1] if item.normal_simulation.monthly_results else None
+    return (
+        item.strategy.type,
+        round(item.strategy.down_payment, 2),
+        round(item.strategy.loan_amount, 2),
+        round(item.strategy.monthly_contribution, 2),
+        round(item.strategy.investment_allocation, 4),
+        round(item.strategy.annual_interest_rate, 4),
+        item.strategy.loan_term_months,
+        item.maturity_month,
+        round(normal_final.cash_balance, 2) if normal_final else None,
+        round(normal_final.investment_value, 2) if normal_final else None,
+        round(normal_final.net_worth, 2) if normal_final else None,
+        item.stress_simulation.breaking_point_month,
+        item.stress_simulation.goal_acquired,
+    )
+
+
 def generate_ranked_strategies(request: StrategyGenerationRequest) -> list[RankedStrategy]:
     normal_scenario, stress_scenario = get_normal_and_stress_scenarios()
     ranked: list[RankedStrategy] = []
@@ -177,11 +202,14 @@ def generate_ranked_strategies(request: StrategyGenerationRequest) -> list[Ranke
     ordered = sorted(ranked, key=rank_key)
     unique: list[RankedStrategy] = []
     seen_configurations: set[tuple] = set()
+    seen_visible_cards: set[tuple] = set()
     for item in ordered:
         configuration = _strategy_configuration(item.strategy)
-        if configuration in seen_configurations:
+        visible_signature = _visible_strategy_signature(item)
+        if configuration in seen_configurations or visible_signature in seen_visible_cards:
             continue
         seen_configurations.add(configuration)
+        seen_visible_cards.add(visible_signature)
         unique.append(item)
 
     non_dominated = remove_dominated_strategies(unique)
@@ -202,6 +230,8 @@ def generate_ranked_strategies(request: StrategyGenerationRequest) -> list[Ranke
     for item in non_dominated:
         family = item.strategy.type
         configuration = _strategy_configuration(item.strategy)
+        # Keep multiple genuinely different variants, while the visible-card
+        # signature above removes variants that would look identical in the UI.
         if configuration in selected_configurations or family_counts.get(family, 0) >= 3:
             continue
         selected.append(item)

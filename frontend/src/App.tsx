@@ -69,7 +69,11 @@ function App() {
     return () => { active = false; };
   }, []);
 
-  const updateProfile = (key: keyof FinancialProfileForm, value: string) => setProfile(current => ({ ...current, [key]: value }));
+  const updateProfile = (key: keyof FinancialProfileForm, value: string) => setProfile(current => (
+    key === "existingDebt" && Number(value) === 0
+      ? { ...current, existingDebt: value, existingDebtAnnualInterestRate: "0" }
+      : { ...current, [key]: value }
+  ));
   const updateGoal = (key: keyof GoalForm, value: string) => setGoal(current => {
     if (key !== "category") return { ...current, [key]: value };
     const category = value;

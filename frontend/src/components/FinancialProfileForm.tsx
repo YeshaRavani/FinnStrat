@@ -25,8 +25,9 @@ export function FinancialProfileForm({ profile, errors, onChange }: Props) {
         {currency("investments", "Investments", "Current market value of your investments.")}
         {currency("existingDebt", "Existing debt", "Outstanding balances across current loans.")}
         {currency("monthlyDebtPayment", "Monthly debt payments", "Monthly payments on current debt.")}
-        {currency("existingDebtAnnualInterestRate", "Existing debt interest (% annual)", "A blended annual rate used to estimate how your current debt balance amortizes.")}
+        {Number(profile.existingDebt) > 0 && <Field label="Existing debt interest (% annual)" value={profile.existingDebtAnnualInterestRate} onChange={value => onChange("existingDebtAnnualInterestRate", value)} type="percentage" help="Estimated from your balance, payment, and rate; the remaining loan term is not collected." error={errors.existingDebtAnnualInterestRate} required />}
       </div>
+      {Number(profile.existingDebt) > 0 && <p className="debt-model-note">Existing debt is modeled as an estimated amortizing balance using the amount, monthly payment, and annual interest rate you enter.</p>}
       <div className="control-grid">
         <SelectField label="Emergency reserve" value={profile.emergencyMonths} onChange={value => onChange("emergencyMonths", value)} help="Cash kept aside for essential expenses." options={[3, 6, 9, 12].map(value => ({ value: String(value), label: `${value} months` }))} />
         <SelectField label="Risk tolerance" value={profile.riskTolerance} onChange={value => onChange("riskTolerance", value)} help="Used to shape financing assumptions." options={["low", "medium", "high"].map(value => ({ value, label: value }))} />

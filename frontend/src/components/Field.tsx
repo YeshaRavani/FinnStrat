@@ -5,7 +5,7 @@ type Props = {
   required?: boolean;
   help?: string;
   error?: string;
-  type?: "currency" | "number" | "date" | "text";
+  type?: "currency" | "percentage" | "number" | "date" | "text";
   min?: string;
   max?: string;
   step?: string;
@@ -22,12 +22,12 @@ export function Field({ label, value, onChange, required = false, help, error, t
   return (
     <label className="field" htmlFor={inputId}>
       <span>{label}{required && <b className="required-mark" aria-hidden="true"> *</b>}</span>
-      <div className={type === "currency" ? "input-wrap" : "input-wrap plain-input"}>
+      <div className={type === "currency" || type === "percentage" ? "input-wrap" : "input-wrap plain-input"}>
         {type === "currency" && <b aria-hidden="true">₹</b>}
         <input
           id={inputId}
           type={type === "date" ? "date" : "text"}
-          inputMode={type === "currency" || type === "number" ? "decimal" : undefined}
+          inputMode={type === "currency" || type === "percentage" || type === "number" ? "decimal" : undefined}
           value={displayValue}
           min={min}
           max={max}
@@ -35,8 +35,9 @@ export function Field({ label, value, onChange, required = false, help, error, t
           required={required}
           aria-invalid={Boolean(error)}
           aria-describedby={[help && `${inputId}-help`, error && `${inputId}-error`].filter(Boolean).join(" ") || undefined}
-          onChange={event => onChange(type === "currency" || type === "number" ? event.target.value.replace(/,/g, "").replace(/[^0-9.-]/g, "") : event.target.value)}
+          onChange={event => onChange(type === "currency" || type === "percentage" || type === "number" ? event.target.value.replace(/,/g, "").replace(/[^0-9.-]/g, "") : event.target.value)}
         />
+        {type === "percentage" && <b aria-hidden="true">%</b>}
       </div>
       {help && <small id={`${inputId}-help`} className="field-help">{help}</small>}
       {error && <small id={`${inputId}-error`} className="field-error">{error}</small>}

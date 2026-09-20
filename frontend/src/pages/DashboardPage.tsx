@@ -33,6 +33,11 @@ export function DashboardPage({ item, strategy, isModified, targetAmount, scenar
   const final = results[results.length - 1];
   const resilience = simulation?.resilience_score ?? item.resilience_score;
   const debtPoints = results.map(result => ({ month: result.month, value: result.loan_balance + result.existing_debt_balance }));
+  const normalResults = scenarioId !== "normal" ? item.normal_simulation.monthly_results : undefined;
+  const debtMarkers = [
+    strategy.loan_amount > 0 && simulation?.maturity_month ? { month: simulation.maturity_month, label: `Loan M${simulation.maturity_month}`, tone: "gold" as const } : null,
+    strategy.loan_amount > 0 && simulation?.maturity_month ? { month: simulation.maturity_month + strategy.loan_term_months, label: "Payoff", tone: "green" as const } : null,
+  ].filter(Boolean) as { month: number; label: string; tone: "gold" | "green" }[];
 
   return (
     <main className="content dashboard-page">
@@ -49,10 +54,10 @@ export function DashboardPage({ item, strategy, isModified, targetAmount, scenar
           <MetricCard label="FINAL NET WORTH" value={final ? inr(final.net_worth) : "—"} />
         </div>
         <div className="dashboard-grid charts-grid">
-          <CashFlowChart results={results} />
-          <TrendChart title="Investment value" tone="green" points={results.map(result => ({ month: result.month, value: result.investment_value }))} />
-          <TrendChart title="Outstanding debt" tone="red" points={debtPoints} />
-          <NetWorthChart results={results} />
+          <CashFlowChart results={results} comparisonResults={normalResults} breachMonth={simulation.breaking_point_month} />
+          <TrendChart title="Investment value" tone="green" points={results.map(result => ({ month: result.month, value: result.investment_value }))} comparisonPoints={normalResults?.map(result => ({ month: result.month, value: result.investment_value }))} markers={simulation.breaking_point_month ? [{ month: simulation.breaking_point_month, label: `Shock M${simulation.breaking_point_month}`, tone: "red" }] : []} />
+          <TrendChart title="Outstanding debt" tone="red" points={debtPoints} comparisonPoints={normalResults?.map(result => ({ month: result.month, value: result.loan_balance + result.existing_debt_balance }))} markers={debtMarkers} />
+          <NetWorthChart results={results} comparisonResults={normalResults} breachMonth={simulation.breaking_point_month} />
         </div>
         <BreakingPointCard simulation={simulation} originalRecoveryMonth={isModified && scenarioId === "combined_shock" ? item.stress_simulation.recovery_month : undefined} />
       </> : <div className="empty-state"><h2>Simulation unavailable</h2><p>Choose Retry scenario to request this analysis again.</p><button type="button" className="primary compact" onClick={onRetry}>Retry scenario</button></div>}
