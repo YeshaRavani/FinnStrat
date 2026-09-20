@@ -48,7 +48,7 @@ export function DashboardPage({ item, strategy, isModified, targetAmount, scenar
       <StrategyAdjustmentPanel strategy={strategy} targetAmount={targetAmount} onApply={onApplyAdjustment} />
       {loading ? <div className="dashboard-skeleton" aria-label="Running scenario simulation"><span /><span /><span /><span /></div> : simulation ? <>
         <div className="metric-grid">
-          <MetricCard label="GOAL MATURITY" value={simulation.maturity_month ? `Month ${simulation.maturity_month}` : "Not reached"} />
+          <MetricCard label="GOAL PURCHASE" value={simulation.maturity_month ? `Month ${simulation.maturity_month}` : "Not reached"} />
           <MetricCard label="RESILIENCE" value={`${Math.round(resilience ?? 0)} / 100`} tone={(resilience ?? 0) >= 75 ? "positive" : (resilience ?? 0) >= 50 ? "warning" : "breach"} />
           <MetricCard label="LOWEST CASH" value={lowestCash === null ? "—" : inr(lowestCash)} tone={lowestCash !== null && lowestCash < profile.monthly_expenses * profile.emergency_reserve_months ? "warning" : "positive"} />
           <MetricCard label="FINAL NET WORTH" value={final ? inr(final.net_worth) : "—"} />

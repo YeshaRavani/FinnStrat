@@ -13,20 +13,20 @@ export function calculateMonthlyEmi(principal: number, annualRate: number, termM
   return principal * monthlyRate * factor / (factor - 1);
 }
 
-export function loanSummary(strategy: Strategy, maturityMonth: number | null) {
-  if (strategy.loan_amount <= 0 || strategy.loan_term_months <= 0) {
+export function loanSummary(strategy: Strategy, maturityMonth: number | null, actualPrincipal = strategy.loan_amount) {
+  if (actualPrincipal <= 0 || strategy.loan_term_months <= 0) {
     return { emi: 0, totalInterest: 0, payoffMonth: null as number | null };
   }
 
   const emi = calculateMonthlyEmi(
-    strategy.loan_amount,
+    actualPrincipal,
     strategy.annual_interest_rate,
     strategy.loan_term_months,
   );
 
   return {
     emi,
-    totalInterest: Math.max(0, emi * strategy.loan_term_months - strategy.loan_amount),
+    totalInterest: Math.max(0, emi * strategy.loan_term_months - actualPrincipal),
     payoffMonth: maturityMonth === null ? null : maturityMonth + strategy.loan_term_months,
   };
 }

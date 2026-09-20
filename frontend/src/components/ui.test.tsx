@@ -28,7 +28,7 @@ describe("strategy UI", () => {
     expect(screen.getByText("LOAN TERMS")).toBeTruthy();
     expect(screen.getByText("EST. EMI")).toBeTruthy();
     expect(screen.getByText("EST. INTEREST")).toBeTruthy();
-    expect(screen.getByText("EXPECTED PAYOFF")).toBeTruthy();
+    expect(screen.getByText("LOAN PAYOFF")).toBeTruthy();
     expect(screen.getByText("CASH AT HORIZON")).toBeTruthy();
     expect(screen.getByText("INVESTMENTS AT HORIZON")).toBeTruthy();
     expect(screen.getByText("NET WORTH AT HORIZON")).toBeTruthy();

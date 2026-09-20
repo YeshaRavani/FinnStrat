@@ -49,4 +49,17 @@ describe("loan timing", () => {
       purchase_month: 0, annual_interest_rate: 0.1, loan_term_months: 60, explanation: "",
     }, 5).payoffMonth).toBe(65);
   });
+
+  it("uses the inflation-adjusted loan principal when provided", () => {
+    const summary = loanSummary({
+      id: "loan", name: "Loan", type: "financed_purchase", down_payment: 100000,
+      loan_amount: 900000, monthly_contribution: 0, investment_allocation: 0,
+      purchase_month: 0, annual_interest_rate: 0.1, loan_term_months: 60, explanation: "",
+    }, 1, 908761.59);
+    expect(summary.emi).toBeGreaterThan(loanSummary({
+      id: "loan", name: "Loan", type: "financed_purchase", down_payment: 100000,
+      loan_amount: 900000, monthly_contribution: 0, investment_allocation: 0,
+      purchase_month: 0, annual_interest_rate: 0.1, loan_term_months: 60, explanation: "",
+    }, 1).emi);
+  });
 });
