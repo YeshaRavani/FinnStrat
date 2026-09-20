@@ -3,6 +3,8 @@ import { PreferenceSelector } from "../components/PreferenceSelector";
 import { StrategyCard } from "../components/StrategyCard";
 import { StrategyComparison } from "../components/StrategyComparison";
 import { BackButton } from "../components/BackButton";
+import { StrategyChat } from "../components/StrategyChat";
+import type { StrategyChatRequest } from "../types/chat";
 import { finalNormalNetWorth } from "../utils/loanMath";
 
 type Props = {
@@ -22,9 +24,11 @@ type Props = {
   onEdit: () => void;
   onBack: () => void;
   affordability: AffordabilityResult | null;
+  chatProfile: StrategyChatRequest["profile"];
+  chatGoal: StrategyChatRequest["goal"];
 };
 
-export function StrategyResultsPage({ strategies, goalName, preference, selectedId, comparedIds, loading, isDemo, error, affordability, onSelect, onOpen, onCompare, onPreferenceChange, onRetry, onEdit, onBack }: Props) {
+export function StrategyResultsPage({ strategies, goalName, preference, selectedId, comparedIds, loading, isDemo, error, affordability, chatProfile, chatGoal, onSelect, onOpen, onCompare, onPreferenceChange, onRetry, onEdit, onBack }: Props) {
   const selected = strategies.find(item => item.strategy.id === selectedId) ?? null;
   const compared = strategies.filter(item => comparedIds.includes(item.strategy.id));
   const bestNormal = [...strategies].sort((a, b) => finalNormalNetWorth(b) - finalNormalNetWorth(a))[0];
@@ -40,17 +44,22 @@ export function StrategyResultsPage({ strategies, goalName, preference, selected
       {loading ? <div className="strategy-grid" aria-label="Generating strategies">{[1, 2, 3].map(number => <div className="strategy-skeleton" key={number} />)}</div> : strategies.length === 0 ? (
         <AffordabilityNotice result={affordability} onEdit={onEdit} />
       ) : <>
-        {strategies[0] && (strategies[0].stress_simulation.breaking_point_month !== null || !strategies[0].stress_simulation.goal_acquired) && <div className="recommendation-warning" role="note"><strong>Conditional recommendation</strong><span>Recommended under normal assumptions, but vulnerable under combined stress. Review the breach month and recovery before choosing this plan.</span></div>}
-        <div className="insight-strip" aria-label="Strategy highlights">
-          <div><span>TOP RECOMMENDATION</span><b>{strategies[0]?.strategy.name ?? "—"}</b></div>
-          <div><span>BEST NORMAL CASE</span><b>{bestNormal?.strategy.name ?? "—"}</b></div>
-          <div><span>BEST RESILIENCE</span><b>{bestResilience?.strategy.name ?? "—"}</b></div>
-          <div><span>FASTEST</span><b>{fastest?.strategy.name ?? "—"}</b></div>
-          <div><span>LOWEST DEBT</span><b>{lowestDebt?.strategy.name ?? "—"}</b></div>
+        <div className="results-workspace">
+          <div className="results-main">
+            {strategies[0] && (strategies[0].stress_simulation.breaking_point_month !== null || !strategies[0].stress_simulation.goal_acquired) && <div className="recommendation-warning" role="note"><strong>Conditional recommendation</strong><span>Recommended under normal assumptions, but vulnerable under combined stress. Review the breach month and recovery before choosing this plan.</span></div>}
+            <div className="insight-strip" aria-label="Strategy highlights">
+              <div><span>TOP RECOMMENDATION</span><b>{strategies[0]?.strategy.name ?? "—"}</b></div>
+              <div><span>BEST NORMAL CASE</span><b>{bestNormal?.strategy.name ?? "—"}</b></div>
+              <div><span>BEST RESILIENCE</span><b>{bestResilience?.strategy.name ?? "—"}</b></div>
+              <div><span>FASTEST</span><b>{fastest?.strategy.name ?? "—"}</b></div>
+              <div><span>LOWEST DEBT</span><b>{lowestDebt?.strategy.name ?? "—"}</b></div>
+            </div>
+            <div className="strategy-grid">{strategies.map((item, index) => <StrategyCard item={item} rank={index + 1} selected={selectedId === item.strategy.id} compared={comparedIds.includes(item.strategy.id)} onSelect={() => onSelect(item)} onCompare={checked => onCompare(item.strategy.id, checked)} key={item.strategy.id} />)}</div>
+            <StrategyComparison strategies={compared} />
+            {selected && <div className="open-dashboard"><span>Selected: {selected.strategy.name}</span><button type="button" className="primary compact" onClick={() => onOpen(selected)}>Open detailed analysis</button></div>}
+          </div>
+          <StrategyChat profile={chatProfile} goal={chatGoal} strategies={strategies} selectedId={selectedId} />
         </div>
-        <div className="strategy-grid">{strategies.map((item, index) => <StrategyCard item={item} rank={index + 1} selected={selectedId === item.strategy.id} compared={comparedIds.includes(item.strategy.id)} onSelect={() => onSelect(item)} onCompare={checked => onCompare(item.strategy.id, checked)} key={item.strategy.id} />)}</div>
-        <StrategyComparison strategies={compared} />
-        {selected && <div className="open-dashboard"><span>Selected: {selected.strategy.name}</span><button type="button" className="primary compact" onClick={() => onOpen(selected)}>Open detailed analysis</button></div>}
       </>}
     </main>
   );

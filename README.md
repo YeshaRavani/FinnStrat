@@ -17,7 +17,7 @@ The project dataset is available in two forms under `data/`:
 
 The backend opens the bundled SQLite database read-only. Its `stress_scenarios` rows provide the live API scenario catalog and the same scenario definitions used during strategy generation. Set `FINNSTRAT_DB_PATH` to use another compatible SQLite file. The SQL dump is not loaded on every server start; it is the portable export of the dataset, while SQLite is the efficient runtime format. The two checked-in files currently contain identical rows.
 
-Prototype accounts use a separate writable SQLite database at `data/finnstrat_app.sqlite` (ignored by Git), so user records never modify the checked-in dataset. Signup uses a username and password only—there is no email verification or external account integration. Passwords are stored as salted PBKDF2-SHA256 hashes and the frontend keeps an expiring opaque session token in browser storage. Each account owns its saved financial profile and goal history.
+Prototype accounts use a separate writable SQLite database at `data/finnstrat_app.sqlite`, so user records never modify the checked-in dataset. Signup uses a username and password only—there is no email verification or external account integration. Passwords are stored as salted PBKDF2-SHA256 hashes and the frontend keeps an expiring opaque session token in browser storage. Each account owns its saved financial profile and goal history.
 
 For investment growth, the backend estimates a default annual return from month-to-month changes in baseline `full_cash` investment series in `monthly_simulations`, grouped by dataset risk band and mapped to the form's low/medium/high choices. An explicit `expected_annual_investment_return` in an API profile overrides this calibration. These monthly rows are synthetic model outputs, not observed market prices or verified real-world historical returns; the calibration reproduces the dataset's assumptions and should not be interpreted as a forecast.
 
@@ -97,6 +97,10 @@ Validation errors use FastAPI's standard `422` response with a `detail` field. T
 - `POST /api/v1/goals` saves or updates a goal for the authenticated user.
 - `POST /api/v1/auth/logout` revokes the current session token.
 
+### Strategy chat
+
+`POST /api/v1/chat/strategy` is an authenticated server-side Groq proxy. It receives the current goal, profile summary, all generated strategy summaries, and the conversation messages. The browser never receives the Groq key. Copy `.env.example` to `.env` and set `GROQ_API_KEY`; `GROQ_MODEL` defaults to `openai/gpt-oss-120b`. If no key is configured, the strategy page explains how to configure the assistant instead of failing silently.
+
 ## Local development
 
 ### Backend
@@ -107,6 +111,13 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
+```
+
+For the optional strategy chatbot, create the environment file before starting FastAPI:
+
+```bash
+cp .env.example .env
+# edit .env and set GROQ_API_KEY
 ```
 
 ### Frontend
